@@ -91,8 +91,8 @@ const OpportunitiesSortFilter: React.FC<OpportunitiesSortFilterProps> = ({ oppor
             <SelectContent>
               <SelectItem value="deadline-asc">Deadline (Earliest First)</SelectItem>
               <SelectItem value="deadline-desc">Deadline (Latest First)</SelectItem>
-              <SelectItem value="upload-date-desc">Recently Added (by ID)</SelectItem>
-              <SelectItem value="upload-date-asc">Oldest First (by ID)</SelectItem>
+              <SelectItem value="upload-date-desc">Recently Added</SelectItem>
+              <SelectItem value="upload-date-asc">Oldest First</SelectItem>
             </SelectContent>
           </Select>
         </div>

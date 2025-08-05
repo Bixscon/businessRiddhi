@@ -21,6 +21,9 @@ const BusinessRecommendations = ({ data }: { data: any }) => {
         const res = await getRecommendations(data);
 
         if (res.error) {
+          console.error("Recommendations error:", res.error);
+          console.error("Error details:", res.details);
+          console.error("Input data:", data);
           setError(res.error);
           setRecommendedBusinesses([]); // Avoid null state lingering
           return;

@@ -16,7 +16,12 @@ import { fundingOpportunitySchema } from '@/schemas';
 // Using the imported ExtendedOpportunity interface
 
 interface OpportunitySheetProps {
-  opportunity: z.infer<typeof fundingOpportunitySchema> & { id?: string, imageUrl?: string | null };
+  opportunity: z.infer<typeof fundingOpportunitySchema> & { 
+    id?: string; 
+    imageUrl?: string | null;
+    endDate?: Date | string | null;
+    endDatetime?: Date | string | null;
+  };
   business: Business;
   children: React.ReactNode;
 }
@@ -38,7 +43,7 @@ const OpportunitySheet = ({
     description: opportunity.description,
     eligibilityCriteria: opportunity.eligibilityCriteria, 
     registration: opportunity.registration,
-    endDate: opportunity.endDate,
+    endDate: opportunity.endDate || opportunity.endDatetime || null,
     startDate: opportunity.startDate,
     targetProductStage: opportunity.targetProductStage,
     targetFundingStage: opportunity.targetFundingStage,

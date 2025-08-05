@@ -11,6 +11,8 @@ import { fundingOpportunitySchema } from "@/schemas";
 import { z } from "zod";
 import FundingCardActions from "./funding-card-actions";
 import { getImageKitUrl } from "../../lib/image-utils";
+import DeadlineCountdown from "@/components/DeadlineCountdown";
+import ShareOpportunity from "@/components/ShareOpportunity";
 
 // Extended interface to handle both Prisma and zod schema properties
 interface ExtendedOpportunity {
@@ -105,9 +107,14 @@ export const FundingCardClient = ({
             </Avatar>
             <p>{business?.name || "Own this opportunity ?"}</p>
           </div>
-          <div>
-            <p>Apply By: {formattedDate}</p>
-          </div>
+          
+          {/* Deadline Countdown */}
+          <DeadlineCountdown 
+            endDate={fundingOpportunity.endDatetime || fundingOpportunity.endDate || null} 
+            size="sm"
+            className="mt-2"
+          />
+          
           <div className="flex gap-2 items-center">
             <MapPin />
             <p>{business?.location || "No Location Found"}</p>
@@ -137,7 +144,7 @@ export const FundingCardClient = ({
         </div>
         
         <div className="mt-2 flex items-center justify-between">
-          {/* Navigation Link - Separate navigation element */}
+          {/* Navigation Link */}
           <Link 
             href={`/opportunity/${fundingOpportunity.id}`} 
             className="text-blue-600 hover:underline"
@@ -146,12 +153,20 @@ export const FundingCardClient = ({
           </Link>
           
           {/* Action Buttons */}
-          <FundingCardActions
-            isSaved={isSaved}
-            userId={userId}
-            opportunityId={fundingOpportunity.id}
-            registrationFormLink={fundingOpportunity.registrationFormLink}
-          />
+          <div className="flex items-center gap-2">
+            <ShareOpportunity 
+              opportunityId={fundingOpportunity.id}
+              opportunityTitle={fundingOpportunity.title}
+              variant="ghost"
+              size="sm"
+            />
+            <FundingCardActions
+              isSaved={isSaved}
+              userId={userId}
+              opportunityId={fundingOpportunity.id}
+              registrationFormLink={fundingOpportunity.registrationFormLink}
+            />
+          </div>
         </div>
       </div>
     </div>

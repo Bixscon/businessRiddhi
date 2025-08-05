@@ -16,6 +16,7 @@ import ContactOverlay from '@/components/ContactDetails';
 import * as z from 'zod';
 import { fundingOpportunitySchema } from '@/schemas';
 import { Business } from '@prisma/client';
+import DeadlineCountdown from '@/components/DeadlineCountdown';
 
 // Extended opportunity interface to handle properties that might come from Prisma model
 export interface ExtendedOpportunity {
@@ -28,7 +29,7 @@ export interface ExtendedOpportunity {
   description: string;
   eligibilityCriteria: string;
   registration: string;
-  endDate: Date;
+  endDate: Date | string | null;
   startDate?: Date;
   targetProductStage?: string;
   targetFundingStage?: string;
@@ -55,7 +56,7 @@ const PreviewOpportunityApply = ({
   business,
   isInSheet = false,
 }: PreviewOpportunityApplyProps) => {
-  const date = new Date(opportunity.endDate || new Date());
+  const date = opportunity.endDate ? new Date(opportunity.endDate) : new Date();
   const formattedDate = date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -157,7 +158,15 @@ const PreviewOpportunityApply = ({
             </div>
             <span className="flex flex-col ">
               <span className="font-semibold">Time until Deadline</span>
-              <span>21 Days left</span>
+              {opportunity.endDate ? (
+                <DeadlineCountdown 
+                  endDate={opportunity.endDate} 
+                  size="sm"
+                  plainText={true}
+                />
+              ) : (
+                <span>No deadline set</span>
+              )}
             </span>
           </div>
           <div className="flex items-center gap-x-4">

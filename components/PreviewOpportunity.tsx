@@ -20,9 +20,12 @@ import { Business } from '@prisma/client';
 import Image from 'next/image';
 import InteractiveButton from '@/components/InteractiveButton';
 import { getImageKitUrl } from '@/lib/image-utils';
+import DeadlineCountdown from '@/components/DeadlineCountdown';
+import ShareOpportunity from '@/components/ShareOpportunity';
 
 // Extend the inferred type to include the bannerUrl property
 type OpportunityWithBanner = z.infer<typeof fundingOpportunitySchema> & {
+  id?: string; // Made optional to support form previews
   bannerUrl?: string | null;
 };
 
@@ -93,10 +96,12 @@ const PreviewOpportunity = ({
           <p className="text-sm">{business?.name}</p>
         </div>
         <div className="py-4 space-y-3">
-          <p className="flex gap-x-2">
-            <span>Apply By: </span>
-            <span>{formattedDate}</span>
-          </p>
+          {/* Deadline Countdown with full date */}
+          <DeadlineCountdown 
+            endDate={opportunity.endDate} 
+            showFullDate={true}
+            size="md"
+          />
           <div className="flex gap-x-1 items-center">
             <MapPin />
             <span>{business?.location}</span>
@@ -144,9 +149,16 @@ const PreviewOpportunity = ({
               <HeartStraight size={24} />
             </Button>
 
-            <Button variant="ghost" size="icon">
-              <ShareFat size={24} />
-            </Button>
+            {opportunity.id ? (
+              <ShareOpportunity 
+                opportunityId={opportunity.id} 
+                opportunityTitle={opportunity.title}
+              />
+            ) : (
+              <Button variant="ghost" size="icon">
+                <ShareFat size={24} />
+              </Button>
+            )}
           </div>
           <div className="flex justify-center pt-2 sm:pt-0">
             {opportunity.registrationFormLink ? (
@@ -167,10 +179,14 @@ const PreviewOpportunity = ({
             <div className="inline-block p-2 rounded-full border">
               <ClockCountdown size={24} />
             </div>
-            <span className="flex flex-col ">
+            <div className="flex flex-col">
               <span className="font-semibold">Time until Deadline</span>
-              <span>21 Days left</span>
-            </span>
+              <DeadlineCountdown 
+                endDate={opportunity.endDate} 
+                size="sm"
+                className="mt-1"
+              />
+            </div>
           </div>
           <div className="flex items-center gap-x-4">
             <div className="inline-block p-2 rounded-full border">

@@ -22,7 +22,12 @@ export const getRecommendations = async (
   const validatedFields = recommendationSchema.safeParse(startupDetails);
 
   if (!validatedFields.success) {
-    return { error: "Invalid fields!" };
+    console.error("Validation failed:", validatedFields.error);
+    console.error("Input data:", startupDetails);
+    return { 
+      error: "Invalid fields!", 
+      details: validatedFields.error.issues 
+    };
   }
 
   try {

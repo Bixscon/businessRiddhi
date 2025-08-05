@@ -8,6 +8,7 @@ import * as z from 'zod';
 
 // Define the OpportunityWithBanner type to match what PreviewOpportunity expects
 type OpportunityWithBanner = z.infer<typeof fundingOpportunitySchema> & {
+  id: string;
   bannerUrl?: string | null;
 };
 
@@ -43,6 +44,7 @@ export default async function OpportunityDetails(props: PageProps) {
   
   // Map the opportunity data to match the expected OpportunityWithBanner type
   const opportunity: OpportunityWithBanner = {
+    id: opportunityId,
     imageUrl: opportunityData.imageUrl || '',
     type: opportunityData.type || '',
     subtype: opportunityData.subtype || '',
