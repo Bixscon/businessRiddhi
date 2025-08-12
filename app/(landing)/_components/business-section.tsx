@@ -48,7 +48,7 @@ function BusinessSection() {
         }}      ></div>
 
       {/* Content Section */}
-      <div className="relative px-4 pt-9 pb-20 space-y-9 md:space-y-14 xl:space-y-20">
+      <div className="relative px-4 pt-9 pb-24 space-y-9 md:space-y-14 xl:space-y-20">
         {/* Heading */}
         <div className="space-y-3 text-center max-w-3xl mx-auto">
           <h2
@@ -66,7 +66,7 @@ function BusinessSection() {
           {businessSection.map((data, idx) => (
             <div
               key={data.title}
-              className="flex flex-col min-w-[324px] h-[500px] flex-1 bg-[#ec3982] rounded-2xl border-none shadow-[0px_4px_16px_rgba(0,0,0,0.15)] hover:shadow-[0px_8px_24px_rgba(0,0,0,0.2)] transition-all duration-300"
+              className="flex flex-col min-w-[324px] h-[500px] flex-1 bg-primary-landing-light rounded-2xl border-none shadow-[0px_4px_16px_rgba(0,0,0,0.15)] hover:shadow-[0px_8px_24px_rgba(0,0,0,0.2)] transition-all duration-300"
             >
               <div className="flex flex-col h-full items-center justify-between pt-6 pb-3 px-6">
                 <div className="flex flex-col items-start gap-[22px] py-0 self-stretch w-full">
@@ -110,7 +110,7 @@ function BusinessSection() {
             </div>
           ))}
         </div>        {/* Features Section */}
-        <div className="max-w-screen-xl mx-auto flex flex-col gap-4 md:flex-row md:justify-between py-9 md:py-12 lg:py-16">
+        <div className="max-w-screen-xl mx-auto flex flex-col gap-4 md:flex-row md:justify-between py-12 md:py-16 lg:py-22">
           {features.map((feat) => (
             <div
               key={feat.title}
@@ -123,7 +123,22 @@ function BusinessSection() {
                 {feat.subtitle}
               </p>
             </div>
-          ))}        </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Decorative Bottom Wave */}
+      <div
+        className="absolute inset-x-0 bottom-0 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-60"
+        aria-hidden="true"
+      >
+        <Image
+          src="/wave-real-2.png"
+          fill
+          className="object-cover object-left rotate-180"
+          alt="Wave-shaped decorative background"
+          loading="lazy" // Lazy-loaded
+        />
       </div>
     </section>
   );

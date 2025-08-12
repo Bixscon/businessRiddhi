@@ -6,7 +6,8 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],  theme: {    extend: {
+  ], theme: {
+    extend: {
       keyframes: {
         scroll: {
           '0%': { transform: 'translateX(0)' },
@@ -73,7 +74,7 @@ const config: Config = {
           '1000': '#4D1124',
           DEFAULT: '#D43A63',
           landing: '#E70763',
-          'landing-light': '#EC3982',
+          'landing-light': '#EA1B70',
           foreground: 'hsl(var(--primary-foreground))',
         },
         secondary: {
@@ -153,7 +154,7 @@ const config: Config = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
-      },      extendedKeyframes: {
+      }, extendedKeyframes: {
         'accordion-down': {
           from: {
             height: '0',

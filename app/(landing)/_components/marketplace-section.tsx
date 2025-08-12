@@ -86,7 +86,7 @@ function MarketplaceSection() {
       subtitle: "Days",
     },
     {
-      value: 200,
+      value: 600,
       suffix: "+",
       subtitle: "Active Users",
     },
@@ -123,18 +123,18 @@ function MarketplaceSection() {
           {stats.map((stat, index) => (
             <div key={index} className="flex-grow space-y-1">
               <p className="font-degular text-heading4 lg:text-heading3 xl:text-heading2">                {statsInView ? (
-                  <>
-                    <CountUp
-                      start={0}
-                      end={stat.value}
-                      duration={2}
-                      separator=","
-                    />
-                    {stat.suffix && stat.suffix}
-                  </>
-                ) : (
-                  0
-                )}
+                <>
+                  <CountUp
+                    start={0}
+                    end={stat.value}
+                    duration={2}
+                    separator=","
+                  />
+                  {stat.suffix && stat.suffix}
+                </>
+              ) : (
+                0
+              )}
               </p>
               <p className="text-xl lg:text-hero text-primary font-medium">
                 {stat.subtitle}
@@ -176,7 +176,7 @@ function MarketplaceSection() {
               >                <div className="relative w-[58px] h-[58px] rounded-full inline-flex justify-center items-center bg-success-landing">
                   {idx === 0 && (
                     <div className="w-11 h-11 relative">
-                      <Image 
+                      <Image
                         src="/currencyinr.svg"
                         alt="Funding icon"
                         fill
@@ -186,7 +186,7 @@ function MarketplaceSection() {
                   )}
                   {idx === 1 && (
                     <div className="w-11 h-11 relative">
-                      <Image 
+                      <Image
                         src="/usersthree.svg"
                         alt="Team building icon"
                         fill
@@ -196,7 +196,7 @@ function MarketplaceSection() {
                   )}
                   {idx === 2 && (
                     <div className="w-11 h-11 relative">
-                      <Image 
+                      <Image
                         src="/files.svg"
                         alt="Documents icon"
                         fill
@@ -237,8 +237,8 @@ function MarketplaceSection() {
               className="h-[60px] px-10 py-1 bg-[#d43a63] rounded-[1000px] shadow-[1px_1px_16px_#00000040] relative z-10"
             >
               <Link href="/login" className="flex items-center">                <span className="text-white font-visey-UI-3-desktop-body-feature-accent font-[number:var(--visey-UI-3-desktop-body-feature-accent-font-weight)] text-[length:var(--visey-UI-3-desktop-body-feature-accent-font-size)] tracking-[var(--visey-UI-3-desktop-body-feature-accent-letter-spacing)] leading-[var(--visey-UI-3-desktop-body-feature-accent-line-height)] whitespace-nowrap [font-style:var(--visey-UI-3-desktop-body-feature-accent-font-style)]">
-                  Get resource now
-                </span>
+                Get resource now
+              </span>
                 <div className="inline-flex items-center justify-center p-2 rounded-[1000px]">
                   <ArrowUpRight size={24} className="text-white" />
                 </div>

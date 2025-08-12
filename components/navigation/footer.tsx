@@ -51,8 +51,7 @@ function Footer({ className }: { className?: string }) {
           className="mx-auto"
         />
         <p>
-          All rights reserved Visey | Designed and built with love - Copyright©
-          2025
+          All rights Reserved Bixscon Technologies Pvt. Ltd. | Designed and built with love - Copyright© 2025
         </p>
 
         <Separator className="bg-primary mt-6" />
