@@ -4,15 +4,20 @@ import React from "react";
 import Image from "next/image";
 
 const logos = [
-  { src: "/trusted by/image 20.png", width: 75, height: 76, alt: "Company Logo" },
+  { src: "/trusted by/image 20.png", width: 175, height: 76, alt: "Company Logo" },
   { src: "/trusted by/image 28.png", width: 152, height: 76, alt: "Company Logo" },
   { src: "/trusted by/image 34.png", width: 304, height: 76, alt: "Company Logo" }, // Adjusted ratio
   { src: "/trusted by/image 35.png", width: 285, height: 76, alt: "Company Logo" }, // Adjusted ratio
   { src: "/trusted by/image 36.png", width: 272, height: 38, alt: "Company Logo" },
   { src: "/trusted by/image 37.png", width: 123, height: 76, alt: "Company Logo" }, // Adjusted ratio
   { src: "/trusted by/image 38.png", width: 137, height: 76, alt: "Company Logo" }, // Adjusted ratio
-  { src: "/trusted by/image 39.png", width: 76, height: 76, alt: "Company Logo" }, // Adjusted ratio
-  { src: "/trusted by/image 40.png", width: 378, height: 76, alt: "Company Logo" } // Adjusted ratio
+  { src: "/trusted by/image 39.png", width: 176, height: 76, alt: "Company Logo" }, // Adjusted ratio
+  { src: "/trusted by/image 40.png", width: 378, height: 76, alt: "Company Logo" }, // Adjusted ratio
+  { src: "/trusted by/image 41.png", width: 75, height: 76, alt: "Company Logo" },
+  { src: "/trusted by/image 42.png", width: 75, height: 76, alt: "Company Logo" },
+  { src: "/trusted by/image 43.png", width: 75, height: 76, alt: "Company Logo" },
+  { src: "/trusted by/image 44.png", width: 175, height: 76, alt: "Company Logo" },
+  { src: "/trusted by/image 45.png", width: 145, height: 76, alt: "Company Logo" },
 ];
 
 export default function TrustedBySection() {

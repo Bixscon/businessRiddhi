@@ -9,9 +9,19 @@ const HeroSection = () => {
       className="relative bg-primary-landing text-base-white overflow-hidden lg:h-screen"
       aria-labelledby="hero-heading"
     >
+
+      {/* Hero Background Image */}
+      <Image
+        src="/hero-section-background.png"
+        fill
+        className="object-cover"
+        alt="Hero background"
+        loading="lazy"
+      />
+
       {/* Decorative Background Wave - Bottom */}
       <div
-        className="absolute inset-x-0 -bottom-6 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-80"
+        className="absolute inset-x-0 -bottom-6 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-25"
         aria-hidden="true"
       >
         <Image
@@ -25,7 +35,7 @@ const HeroSection = () => {
 
       {/* Decorative Background Wave - Top */}
       <div
-        className="absolute inset-x-0 top-0 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-80"
+        className="absolute inset-x-0 top-0 w-full h-[250px] md:h-[200px] lg:h-[300px] max-w-7xl mx-auto opacity-25"
         aria-hidden="true"
       >
         <Image

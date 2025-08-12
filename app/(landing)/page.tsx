@@ -20,7 +20,7 @@ export default function LandingPage() {
       <TargetAudienceSection />
       <BusinessSection />
 
-      <div className="bg-primary-landing relative w-full h-40 shadow-2xl">
+      <div className="bg-gradient-to-r from-[#820438] via-[#E70763] to-[#810437]  relative w-full h-40 shadow-2xl">
         <div
           className="absolute inset-0 bg-repeat-x"
           style={{

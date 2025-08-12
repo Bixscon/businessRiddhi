@@ -3,12 +3,12 @@ import Image from "next/image";
 function TargetAudienceSection() {
   return (
     <section
-      className="bg-[#F01D74] w-full py-4"
+      className="bg-gradient-to-tr from-[#9d0543] to-[#c80755] w-full py-4"
       aria-labelledby="target-audience-heading"
     >
       {/* Triangle top border - decorative */}
       <div
-        className="w-full h-20 bg-repeat-x"
+        className="w-full h-20 bg-repeat-x opacity-25"
         aria-hidden="true"
         style={{
           backgroundImage: "url('/triangle.png')",
@@ -18,7 +18,7 @@ function TargetAudienceSection() {
       ></div>
       {/* Main content - with max-width constraint */}
       <div className="max-w-screen-xl mx-auto px-4">
-        <section className="py-3 md:py-2 lg:py-1 text-base-white space-y-4 md:flex md:space-y-0 md:gap-x-10 md:items-center">
+        <section className="py-3 md:py-4 lg:py-6 text-base-white space-y-4 md:flex md:space-y-0 md:gap-x-10 md:items-center">
           {/* Image Section */}
           <div className="relative size-72 sm:size-80 mx-auto md:mx-0 md:flex-1">
             <Image
@@ -59,7 +59,7 @@ function TargetAudienceSection() {
 
       {/* Triangle bottom border - decorative */}
       <div
-        className="w-full h-20 bg-repeat-x"
+        className="w-full h-20 bg-repeat-x opacity-25"
         aria-hidden="true"
         style={{
           backgroundImage: "url('/triangle.png')",

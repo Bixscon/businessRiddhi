@@ -9,7 +9,7 @@ function TestimonialSection() {
     >
       {/* Decorative Top Wave */}
       <div
-        className="absolute inset-x-0 -top-6 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-60"
+        className="absolute inset-x-0 top-0 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-60"
         aria-hidden="true"
       >
         <Image
