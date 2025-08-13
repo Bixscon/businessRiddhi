@@ -3,19 +3,19 @@ import Image from "next/image";
 
 const businessSection = [
   {
-    title: "Actionable Insights for Growth",
-    description:
-      "Visey’s platform offers analytics for valuable insights to help you better serve the needs of startups.",
-  },
-  {
-    title: "Reach your Target Audience",
+    title: "Generate targeted leads",
     description:
       "Visey enables your business to efficiently connect with Indian startups actively seeking your services.",
   },
   {
-    title: "Build Trust Through Transparency",
+    title: "Get applicants for funding opportunities & events",
     description:
-      "Integrated verification, ratings and reviews ensure transparency, fostering trust and credibility among startups and resource providers.",
+      "Set the target audience, post and start receiving desired applications in 3-steps",
+  },
+  {
+    title: "Get Visey Verified & build trust",
+    description:
+      "Get verified, get ratings & reviews to ensure trust and credibility of your brand.",
   },
 ];
 

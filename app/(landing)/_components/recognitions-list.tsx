@@ -24,7 +24,8 @@ export function RecognitionsList() {
         Recognitions &amp; Features
       </h3>
       
-      <div className="relative w-full overflow-hidden">
+      {/* Desktop view - scrolling animation */}
+      <div className="relative w-full overflow-hidden hidden md:block">
         <style jsx>{`
           @keyframes scroll {
             0% {
@@ -50,11 +51,27 @@ export function RecognitionsList() {
                 src={img.src}
                 width={img.width}
                 height={img.height}
-                priority={index < 5} // Prioritize loading first few images
+                priority={index < 5}
               />
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Mobile view - two columns */}
+      <div className="grid grid-cols-2 gap-8 px-4 md:hidden">
+        {recognitionImages.map((img, index) => (
+          <div key={index} className="flex items-center justify-center">
+            <Image
+              className="object-contain max-w-full h-auto"
+              alt={img.alt}
+              src={img.src}
+              width={img.width}
+              height={img.height}
+              priority={index < 4}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -77,7 +94,7 @@ export function RecognitionsListStatic() {
               src={img.src}
               width={img.width}
               height={img.height}
-              priority={index < 5} // Prioritize loading first few images
+              priority={index < 5}
             />
           </div>
         ))}
