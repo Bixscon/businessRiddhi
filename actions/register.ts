@@ -7,6 +7,7 @@ import { hash } from 'bcryptjs';
 import { signin } from './signin';
 
 export const register = async (values: z.infer<typeof signUpSchema>) => {
+  console.log('Registering user with values:', values);
   const validatedFields = signUpSchema.safeParse(values);
 
   if (!validatedFields.success) {
