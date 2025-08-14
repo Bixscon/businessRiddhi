@@ -39,7 +39,7 @@ function SignUpSection() {
           {/* Signup Form */}
           <form
             action="#"
-            className="bg-primary-landing rounded-2xl mx-auto p-8 mt-9 mb-1 md:w-8/12 xl:w-6/12 md:rounded-full md:flex md:items-center md:gap-x-6"
+            className="bg-primary-landing  bg-gradient-to-tr from-[#9d0543] to-[#c80755] rounded-2xl mx-auto p-8 mt-9 mb-1 md:w-8/12 xl:w-6/12 md:rounded-full md:flex md:items-center md:gap-x-6"
             aria-labelledby="signup-form-title"
           >
             <div className="md:flex-1">

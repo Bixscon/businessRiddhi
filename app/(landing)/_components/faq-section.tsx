@@ -59,15 +59,24 @@ function FaqSection() {
   const displayedFaqs = showAll ? faqData : faqData.slice(0, 4);
 
   return (
-    <section className="bg-primary-landing" aria-labelledby="faq-section-heading">
-      <section className="relative mb-10 pt-20 pb-10 text-base-white max-w-screen-xl xl:mx-auto">
+    <section className="bg-primary-landing bg-gradient-to-tr from-[#9d0543] to-[#c80755] " aria-labelledby="faq-section-heading">
+      <div
+        aria-hidden="true"
+        style={{
+          backgroundImage: "url('/triangle.png')",
+          backgroundSize: "100px 100%",
+          backgroundPosition: "center",
+        }}
+        className="relative rotate-0 w-full h-20 bg-repeat-x opacity-10"
+      ></div>
+      <section className="relative mb-10 pt-10 pb-10 text-base-white max-w-screen-xl xl:mx-auto">
         {/* Heading */}
         <div className="text-center" id="faq-section-heading">
           <p className="text-success-landing text-2xl font-semibold">FAQs</p>
           <h2 className="font-degular font-semibold text-heading4 md:text-heading3 lg:text-heading2 xl:text-heading1 leading-snug">
             Still not Convinced?
           </h2>
-          <p className="font-gothic text-base-black mt-1 text-[32px]">
+          <p className="font-gothic text-base-white mt-1 text-[32px]">
             We&apos;ve got the answers
           </p>
         </div>
@@ -82,7 +91,7 @@ function FaqSection() {
           >            {displayedFaqs.map((item, index) => (
               <AccordionItem key={index} value={`item-${index}`} className="border-b-0">
                 <AccordionTrigger
-                  className="font-gothic px-4 bg-secondary-landing font-semibold rounded-tl-xl rounded-tr-xl border-b-0 text-base"
+                  className="font-gothic px-4 bg-[#BE0752] font-semibold rounded-tl-xl rounded-tr-xl border-b-0 text-base"
                   aria-controls={`content-${index}`}
                   aria-expanded={false}
                 >

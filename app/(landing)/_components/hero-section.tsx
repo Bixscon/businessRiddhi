@@ -74,16 +74,16 @@ const HeroSection = () => {
               </Button>
             </div>
           </div>          {/* Right Image Section */}
-          <div className="relative w-full">
+            <div className="relative w-full flex justify-center lg:justify-end px-4 md:px-8 lg:pr-8 xl:pr-24">
             {/* Main Image */}
-            <div className="relative w-[786px] h-[572px]">
+            <div className="relative w-full max-w-[786px] h-[300px] sm:h-[400px] md:h-[500px] lg:h-[572px]">
               <Image
-                src="/new-hero-img.png"
-                alt="Entrepreneur analyzing resources for their startup"
-                fill
-                className="object-cover"
-                quality={100}
-                loading="lazy"
+              src="/new-hero-img.png"
+              alt="Entrepreneur analyzing resources for their startup"
+              fill
+              className="object-contain"
+              quality={100}
+              loading="lazy"
               />
             </div>
           </div>

@@ -2,6 +2,7 @@ import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import HeroSection from "@/app/(landing)/_components/hero-section";
+import SalesVSection from "@/app/(landing)/_components/SalesVSection";
 import MarketplaceSection from "@/app/(landing)/_components/marketplace-section";
 import TargetAudienceSection from "@/app/(landing)/_components/target-audience-section";
 import BusinessSection from "@/app/(landing)/_components/business-section";
@@ -10,6 +11,7 @@ import FaqSection from "@/app/(landing)/_components/faq-section";
 import SignUpSection from "@/app/(landing)/_components/signup-section";
 import { RecognitionsList } from "@/app/(landing)/_components/recognitions-list";
 import RecommendedCategories from "@/app/(landing)/_components/recommended-categories-new";
+
 
 export default function LandingPage() {
   return (
@@ -42,7 +44,9 @@ export default function LandingPage() {
             </Link>
           </Button>
         </div>
-      </div><TestimonialSection />
+      </div>
+      <SalesVSection />
+      <TestimonialSection />
       <FaqSection />
       <SignUpSection />
       <RecognitionsList />

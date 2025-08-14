@@ -7,19 +7,7 @@ function TestimonialSection() {
       className="relative pt-24"
       aria-labelledby="testimonial-section-heading"
     >
-      {/* Decorative Top Wave */}
-      <div
-        className="absolute inset-x-0 top-0 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-60"
-        aria-hidden="true"
-      >
-        <Image
-          src="/wave-real-2.png"
-          fill
-          className="object-cover object-left"
-          alt="Wave-shaped decorative background"
-          loading="lazy" // Lazy-loaded
-        />
-      </div>
+     
 
       {/* Section Heading */}
       <div className="space-y-2 text-center">
