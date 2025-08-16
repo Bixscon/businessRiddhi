@@ -18,13 +18,13 @@ function SignUpSection() {
       </div>
 
       {/* Help Center CTA */}
-      <p className="relative text-center pt-6 text-neutrals-700 text-lg font-medium">
+      <p className="relative text-center mt-10 text-neutrals-700 text-lg font-medium">
         Still have more Questions? Contact our{" "}
         <span className="font-bold underline cursor-pointer">Help Center</span>.
       </p>
 
       {/* Signup Section */}
-      <section className="relative py-40 px-4">
+      <section className="relative py-20 mt-10 px-4">
         <div className="text-center">
           {/* Headings */}
           <div className="space-y-2">

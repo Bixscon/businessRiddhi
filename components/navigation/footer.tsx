@@ -12,6 +12,7 @@ import {
 
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const footerData = [
   {
@@ -97,9 +98,21 @@ function Footer({ className }: { className?: string }) {
 
           <div className="space-y-2">
             <h2 className="font-semibold text-xl">Community</h2>
-            <Link href="https://wa.me/917827586754">
-              <p className="text-[#545454]">Whatsapp</p>
-            </Link>
+             <Link key="join-now" href="https://wa.me/917827586754">
+                            <Button
+                              variant="nav"
+                              size="md"                  style={{
+                                color: 'black',              
+                                borderRadius: '20px',   
+                                padding: '9px 20px',
+                                background: 'linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box',
+                                border: '2px solid transparent'
+                              }}
+                            >
+                             Join Now
+                            </Button>
+                          </Link>
+      
           </div>
         </div>
         <div className="space-y-2">
