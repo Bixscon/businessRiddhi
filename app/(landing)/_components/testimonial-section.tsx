@@ -21,7 +21,7 @@ function TestimonialSection() {
           &quot;This is the most helpful resource for my startup&quot;
         </p>
       </div>      {/* Carousel Section */}
-      <div className="py-24">
+      <div className="py-11">
         <TestimonialsCarousel />
       </div>
 

@@ -22,7 +22,8 @@ function TargetAudienceSection() {
           {/* Image Section */}
           <div className="relative size-72 sm:size-80 mx-auto md:mx-0 md:flex-1">
             <Image
-              src="/img/startup.webp"
+              src="/img/Frame 427318688.png"
+              
               alt="Illustration of a startup workflow"
               fill
               className="object-contain"

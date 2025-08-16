@@ -91,7 +91,7 @@ function FaqSection() {
           >            {displayedFaqs.map((item, index) => (
               <AccordionItem key={index} value={`item-${index}`} className="border-b-0">
                 <AccordionTrigger
-                  className="font-gothic px-4 bg-[#BE0752] font-semibold rounded-tl-xl rounded-tr-xl border-b-0 text-base"
+                  className="font-gothic text-left px-4 bg-[#BE0752] font-semibold rounded-tl-xl rounded-tr-xl border-b-0 text-base"
                   aria-controls={`content-${index}`}
                   aria-expanded={false}
                 >

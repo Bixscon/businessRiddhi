@@ -167,7 +167,7 @@ const page = () => {
           <h1 className="font-degular font-semibold text-heading4 md:text-heading3 lg:text-heading2 xl:text-heading1 leading-snug text-[#3f3f3f] text-center">
             Meet the Team Behind Visey
           </h1>
-          <p className="font-medium text-center pt-2 px-24">
+          <p className="font-medium text-center pt-2 lg:px-24 md:px-4">
             Our team is a passionate mix of innovators, strategists, and
             dreamers, all united by one mission: to elevate India’s
             entrepreneurial spirit. Together, we are building a brighter, more
