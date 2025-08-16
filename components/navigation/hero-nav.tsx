@@ -38,7 +38,7 @@ export default function HeroNav({ className }: { className?: string }) {
             <div
               className={cn(
                 "overflow-hidden transition-all  duration-300 ease-in-out",
-                isExpanded ? "w-64 opacity-100" : "w-0 opacity-0",
+                isExpanded ? "w-64 opacity-100" : "w-0 opacity-0"
               )}
             >
               <Input
@@ -55,7 +55,7 @@ export default function HeroNav({ className }: { className?: string }) {
             <button
               className={cn(
                 "transition-all duration-300 ease-in-out",
-                isExpanded ? "absolute right-0 top-1/2 -translate-y-1/2" : "",
+                isExpanded ? "absolute right-0 top-1/2 -translate-y-1/2" : ""
               )}
             >
               <MagnifyingGlass
@@ -64,13 +64,15 @@ export default function HeroNav({ className }: { className?: string }) {
                   "shrink-0 size-5 cursor-pointer transition-all duration-300",
                   isExpanded
                     ? "mr-4 text-neutrals-600"
-                    : "mr-4 text-black hover:scale-110",
+                    : "mr-4 text-black hover:scale-110"
                 )}
               />
             </button>
           </div>
 
-          <div className="hidden lg:flex items-center gap-x-4 xl:gap-x-8">            {[
+          <div className="hidden lg:flex items-center gap-x-4 xl:gap-x-8">
+            {" "}
+            {[
               { name: "Features", link: "/features" },
               { name: "About", link: "/about" },
               { name: "Pricing", link: "/pricing" },
@@ -83,31 +85,36 @@ export default function HeroNav({ className }: { className?: string }) {
               >
                 {item.name}
               </Link>
-            ))}            <Link href="/login">              <Button
+            ))}{" "}
+            <Link href="/login">
+              {" "}
+              <Button
                 variant="nav"
                 size="md"
                 style={{
-                  color: 'black',
-                  borderRadius: '20px',
-                  padding: '9px 20px',
-                  background: 'linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box',
-                  border: '2px solid transparent'
+                  color: "black",
+                  borderRadius: "20px",
+                  padding: "9px 20px",
+                  background:
+                    "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
+                  border: "2px solid transparent",
                 }}
               >
                 Join as Resource Provider
               </Button>
             </Link>
-
             {["Join as Startup"].map((text) => (
               <Link key={text} href="/login">
                 <Button
                   variant="nav"
-                  size="md"                  style={{
-                    color: 'black',              
-                    borderRadius: '20px',   
-                    padding: '9px 20px',
-                    background: 'linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box',
-                    border: '2px solid transparent'
+                  size="md"
+                  style={{
+                    color: "black",
+                    borderRadius: "20px",
+                    padding: "9px 20px",
+                    background:
+                      "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
+                    border: "2px solid transparent",
                   }}
                 >
                   {text}
@@ -118,19 +125,32 @@ export default function HeroNav({ className }: { className?: string }) {
         </div>
         <div className="flex items-center gap-4 lg:hidden">
           <Link href="/login">
-            <Button variant="nav" size="md">
-              List Business Free
+            <Button
+              style={{
+                color: "black",
+                borderRadius: "20px",
+                padding: "9px 20px",
+                background:
+                  "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
+                border: "2px solid transparent",
+              }}
+              variant="nav"
+              size="md"
+            >
+              Get Started
             </Button>
           </Link>
           <div className="">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <div>
-                  <List className="w-6 h-6 text-base-white" />
-                </div>
+                <button className="p-2 hover:bg-gray-100 rounded-md transition-colors">
+                  <List className="w-6 h-6 text-black" />
+                </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-[280px] bg-primary-100 flex flex-col gap-2 pt-2 pb-2 mr-4 ring-8 ring-[#f3f3f35a] text-base">
-                <div className="px-4 flex flex-col gap-2">                  <DropdownMenuItem className="cursor-pointer">
+                <div className="px-4 flex flex-col gap-2">
+                  {" "}
+                  <DropdownMenuItem className="cursor-pointer">
                     <span className="flex gap-x-2 items-center">
                       <Link href={"/features"}>
                         <span>Features</span>
@@ -179,7 +199,7 @@ export default function HeroNav({ className }: { className?: string }) {
       </nav>
       <div className="relative z-10 mt-4 shadow-inner lg:hidden">
         <Input
-          className="flex-1 pr-10 border-none py-6 bg-white"
+          className="flex-1 pr-10 border-gray-100 py-6 bg-white"
           type="text"
           placeholder="Type to Search.."
         />
