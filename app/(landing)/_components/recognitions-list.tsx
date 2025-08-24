@@ -15,6 +15,7 @@ const recognitionImages = [
   { src: "/recognitions/image-27.png", width: 180, height: 70, alt: "Recognition" },
   { src: "/recognitions/image-32.png", width: 180, height: 72, alt: "Recognition" },
   { src: "/recognitions/image-22.png", width: 180, height: 49, alt: "Recognition" },
+  { src: "/recognitions/yourstory.png", width: 180, height: 49, alt: "Recognition" },
 ];
 
 export function RecognitionsList() {
