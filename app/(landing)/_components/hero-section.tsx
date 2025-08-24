@@ -12,7 +12,7 @@ const HeroSection = () => {
 
       {/* Hero Background Image */}
       <Image
-        src="/hero-section-background.png"
+        src="/img/hero-landing.png"
         fill
         className="object-cover"
         alt="Hero background"
@@ -20,32 +20,32 @@ const HeroSection = () => {
       />
 
       {/* Decorative Background Wave - Bottom */}
-      <div
+      {/* <div
         className="absolute inset-x-0 -bottom-6 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-25"
         aria-hidden="true"
       >
         <Image
-          src="/herowave2.svg"
+          src="/img/hero-bottom.svg"
           fill
           className="object-cover object-left"
           alt="Decorative wave background"
           loading="lazy"
         />
-      </div>
+      </div> */}
 
       {/* Decorative Background Wave - Top */}
-      <div
+      {/* <div
         className="absolute inset-x-0 top-0 w-full h-[250px] md:h-[200px] lg:h-[300px] max-w-7xl mx-auto opacity-25"
         aria-hidden="true"
       >
         <Image
-          src="/Surajmukhi.svg"
+          src="/img/hero-top.svg"
           fill
           className="object-cover object-left"
           alt="Decorative sunflower background"
           loading="lazy"
         />
-      </div>
+      </div> */}
 
       <div className="max-w-screen-2xl mx-auto py-24">
         {/* Main Content Container */}
