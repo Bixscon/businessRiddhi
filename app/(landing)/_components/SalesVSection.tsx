@@ -14,10 +14,14 @@ function MarqueeBar() {
         {Array(MARQUEE_REPEAT)
           .fill(MARQUEE_TEXT)
           .map((txt, i) => (
-           <>
-            <span className="px-6" key={i}>{txt}</span>
-            <span className="px-6 items-center" key={i}>.</span>
-           </>
+            <>
+              <span className="px-6" key={i}>
+                {txt}
+              </span>
+              <span className="px-6 items-center" key={i}>
+                .
+              </span>
+            </>
           ))}
       </div>
     </div>
@@ -27,7 +31,7 @@ function MarqueeBar() {
 export default function SalesVSection() {
   return (
     <div className="relative bg-white">
-       {/* Decorative Top Wave */}
+      {/* Decorative Top Wave */}
       <div
         className="absolute inset-x-0 top-0 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-60"
         aria-hidden="true"
@@ -79,11 +83,13 @@ export default function SalesVSection() {
           <p className="font-semibold mb-6">
             Apply to SalesV by Visey &amp; Jay Shah.
           </p>
-          <Link target="_blank" href={"https://lu.ma/event/evt-IO5AfJHVHOSh60X"}>
-          <button className="bg-gray-100 px-6 py-3 fw-bold rounded-full shadow hover:shadow-lg transition flex items-center justify-center gap-2 mx-auto md:mx-0">
-            Register Now{" "}
-                   <ArrowUpRight size={24} />
-          </button>
+          <Link
+            target="_blank"
+            href={"https://lu.ma/event/evt-IO5AfJHVHOSh60X"}
+          >
+            <button className="bg-gray-100 px-6 py-3 fw-bold rounded-full shadow hover:shadow-lg transition flex items-center justify-center gap-2 mx-auto md:mx-0">
+              Register Now <ArrowUpRight size={24} />
+            </button>
           </Link>
         </div>
       </div>
@@ -93,11 +99,11 @@ export default function SalesVSection() {
 
       {/* Marquee animation */}
       <style>{`
-        @keyframes marquee2 {
+        @keyframes marquee {
           0% { transform: translateX(0%); }
           100% { transform: translateX(-50%); }
         }
-        .animate-marquee2 {
+        .animate-marquee {
           display: inline-block;
           animation: marquee 45s linear infinite;
         }

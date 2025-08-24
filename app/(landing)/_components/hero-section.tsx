@@ -10,15 +10,22 @@ const HeroSection = () => {
       aria-labelledby="hero-heading"
     >
 
-      {/* Hero Background Image */}
+      {/* Hero Background Image for desktop */}
       <Image
-        src="/img/hero-landing.png"
+        src="/img/landing-hero.svg"
         fill
-        className="object-cover"
+        className="object-cover hidden sm:block"
         alt="Hero background"
         loading="lazy"
       />
-
+      {/* Hero Background Image for mobile */}
+      <Image
+        src="/img/mobile-landing.png"
+        fill
+        className="object-cover sm:hidden"
+        alt="Hero background"
+        loading="lazy"
+      />
       {/* Decorative Background Wave - Bottom */}
       {/* <div
         className="absolute inset-x-0 -bottom-6 w-full h-[250px] md:h-[200px] lg:h-[300px] opacity-25"

@@ -45,6 +45,7 @@ export default function LandingPage() {
           </Button>
         </div>
       </div>
+      
       <SalesVSection />
       <TestimonialSection />
       <FaqSection />
