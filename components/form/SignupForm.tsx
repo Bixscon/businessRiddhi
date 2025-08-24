@@ -56,6 +56,8 @@ const SignupForm = () => {
     setSuccess("");
 
     startTransition(async () => {
+      console.log("Submitting form with values:", values);
+      console.log(typeof values);
       const res = await register(values);
 
       if (res.error) {

@@ -98,7 +98,7 @@ function Footer({ className }: { className?: string }) {
 
           <div className="space-y-2">
             <h2 className="font-semibold text-xl">Community</h2>
-             <Link key="join-now" href="https://wa.me/917827586754">
+             <Link key="join-now" href="https://chat.whatsapp.com/FaMyrpcXefrJSZXtP8YQdQ?mode=ac_t">
                             <Button
                               variant="nav"
                               size="md"                  style={{
