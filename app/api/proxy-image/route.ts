@@ -1,4 +1,8 @@
 // app/api/proxy-image/route.ts
+
+// Force Node.js runtime so Edge runtime issues are avoided
+export const runtime = 'nodejs';
+
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
