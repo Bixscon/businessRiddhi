@@ -7,57 +7,54 @@ import { toast } from "sonner";
 import saveBusiness from "@/actions/save-business";
 import removeSavedBusiness from "@/actions/remove-saved-business";
 
-const SaveOpportunityButton = ({
-  isSaved,
-  userId,
-  businessId,
-}: {
+interface SaveOpportunityButtonProps {
   isSaved: boolean;
   userId: string;
   businessId: string;
-}) => {
+}
+
+const SaveOpportunityButton = ({ isSaved, userId, businessId }: SaveOpportunityButtonProps) => {
   const [isLiked, setIsLiked] = useState(isSaved);
   const [loading, startTransition] = useTransition();
 
   const handleChangeLike = () => {
-    if (isLiked) {
-      setIsLiked(false);
-      startTransition(async () => {
-        const res = await removeSavedBusiness(businessId, userId);
+    // Optimistic UI update: toggle immediately
+    const newLikedState = !isLiked;
+    setIsLiked(newLikedState);
+
+    // Start async operation
+    startTransition(async () => {
+      try {
+        let res;
+        if (newLikedState) {
+          res = await saveBusiness(businessId, userId);
+        } else {
+          res = await removeSavedBusiness(businessId, userId);
+        }
 
         if (res?.error) {
-          setIsLiked(true);
+          // Revert if error
+          setIsLiked(!newLikedState);
           toast.error(res.error);
         }
 
         if (res?.success) {
           toast.success(res.success);
         }
-      });
-    } else {
-      setIsLiked(true);
-      startTransition(async () => {
-        const res = await saveBusiness(businessId, userId);
-
-        if (res?.error) {
-          setIsLiked(false);
-          toast.error(res.error);
-        }
-
-        if (res?.success) {
-          toast.success(res.success);
-        }
-      });
-    }
+      } catch (err) {
+        setIsLiked(!newLikedState);
+        toast.error("Something went wrong.");
+      }
+    });
   };
 
   return (
-    <div className="px-4 cursor-pointer">
+    <div className="px-4">
       <Button
         variant="ghost"
         size="icon"
         onClick={handleChangeLike}
-        disabled={loading}
+        disabled={loading} // optional, can be removed if you want clicks always enabled
       >
         {isLiked ? (
           <HeartStraight weight="fill" className="w-6 h-6" />
