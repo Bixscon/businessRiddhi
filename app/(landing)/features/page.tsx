@@ -66,16 +66,16 @@ const page = () => {
             </div>
             <div className="flex flex-col gap-4 max-w-[400px]">
               <div>
-                <h2 className="font-semibold">All Resources on One Place</h2>
+                <h2 className="font-semibold">All Resources at one-stop</h2>
                 <p className="font-medium">
-                  Access everything your business needs—from startup funding to
+                  Access everything your startup needs—from startup funding to
                   networking and business growth tools—all on one platform.
                   Simplify your entrepreneurial journey without juggling
                   multiple platforms or subscriptions.
                 </p>
               </div>
               <div>
-                <h2 className="font-semibold">Robust Rating & Review System</h2>
+                <h2 className="font-semibold">Robust Ratings & Reviews</h2>
                 <p className="font-medium">
                   Make confident decisions with community-driven ratings and
                   reviews. Learn from other Indian startups and MSMEs about the
@@ -87,7 +87,7 @@ const page = () => {
         </div>
       </div>
       <div className="pt-16 max-w-[1200px] mx-auto">
-        <h1 className="text-center text-3xl font-semibold">For Businesses</h1>
+        <h1 className="text-center text-3xl font-semibold">For Resource Providers</h1>
         <div className="flex flex-col gap-16 pt-12 px-8">
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="w-[320px] md:w-[630px] h-[350px] relative">
