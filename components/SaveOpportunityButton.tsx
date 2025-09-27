@@ -7,65 +7,59 @@ import removeSavedOpportunity from "@/actions/removeSavedOpportunity";
 import saveOpportunity from "@/actions/save-opportunity";
 import { toast } from "sonner";
 
-const SaveOpportunityButton = ({
-  isSaved,
-  userId,
-  opportunityId,
-}: {
+interface SaveOpportunityButtonProps {
   isSaved: boolean;
   userId: string;
   opportunityId: string;
-}) => {
+}
+
+const SaveOpportunityButton = ({ isSaved, userId, opportunityId }: SaveOpportunityButtonProps) => {
   const [isLiked, setIsLiked] = useState(isSaved);
   const [loading, startTransition] = useTransition();
 
   const handleChangeLike = () => {
-    if (isLiked) {
-      setIsLiked(false);
-      startTransition(async () => {
-        const res = await removeSavedOpportunity(opportunityId, userId);
+    // Toggle immediately (optimistic UI)
+    const newLikedState = !isLiked;
+    setIsLiked(newLikedState);
+
+    startTransition(async () => {
+      try {
+        let res;
+        if (newLikedState) {
+          res = await saveOpportunity(opportunityId, userId);
+        } else {
+          res = await removeSavedOpportunity(opportunityId, userId);
+        }
 
         if (res?.error) {
-          setIsLiked(true);
+          // Revert state on error
+          setIsLiked(!newLikedState);
           toast.error(res.error);
         }
 
         if (res?.success) {
           toast.success(res.success);
         }
-      });
-    } else {
-      setIsLiked(true);
-      startTransition(async () => {
-        const res = await saveOpportunity(opportunityId, userId);
-
-        if (res?.error) {
-          setIsLiked(false);
-          toast.error(res.error);
-        }
-
-        if (res?.success) {
-          toast.success(res.success);
-        }
-      });
-    }
+      } catch (err) {
+        setIsLiked(!newLikedState);
+        toast.error("Something went wrong.");
+      }
+    });
   };
 
   return (
-    <div className="px-4 cursor-pointer">
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={handleChangeLike}
-        disabled={loading}
-      >
-        {isLiked ? (
-          <HeartStraight weight="fill" className="w-6 h-6" />
-        ) : (
-          <HeartStraight weight="regular" className="w-6 h-6" />
-        )}
-      </Button>
-    </div>
+    <Button
+      variant="ghost"
+      size="icon"
+      onClick={handleChangeLike}
+      disabled={loading} // optional: remove if you want always clickable
+    >
+      {isLiked ? (
+        <HeartStraight weight="fill" className="w-6 h-6" />
+      ) : (
+        <HeartStraight weight="regular" className="w-6 h-6" />
+      )}
+    </Button>
   );
 };
 
