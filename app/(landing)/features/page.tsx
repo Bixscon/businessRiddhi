@@ -130,47 +130,9 @@ const page = () => {
                   with a qualified, engaged audience.
                 </p>
               </div>
-              <div>
-                <h2 className="font-semibold">Marketing Analytics Dashboard</h2>
-                <p className="font-medium">
-                  Leverage data-driven insights to better understand your
-                  audience. Track engagement, identify what resonates, and
-                  optimize your marketing strategies to meet the needs of Indian
-                  entrepreneurs.
-                </p>
               </div>
-              <div>
-                <h2 className="font-semibold">Cut Promotional Costs</h2>
-                <p className="font-medium">
-                  Promote your products and resources directly to a qualified
-                  audience of startups and MSMEs. Save significantly on
-                  traditional marketing costs while driving meaningful
-                  engagement.
-                </p>
-              </div>
-            </div>
-            <div className="w-[320px] md:w-[630px] h-[350px] relative">
-              <Image
-                src="/img/placeholder-about.png"
-                alt="Resource-4.webp"
-                fill={true}
-                objectFit="contain"
-                priority
-              />
-            </div>
-          </div>
-          <div className="flex flex-col md:flex-row items-center gap-16">
-            <div className="w-[320px] md:w-[630px] h-[350px] relative">
-              <Image
-                src="/img/placeholder-about.png"
-                alt="Placeholder About Image"
-                fill={true}
-                objectFit="contain"
-                priority
-              />
             </div>
         </div>
-      </div>
 
       <div className="flex items-center justify-center pt-16 pb-16">
         <Button>
