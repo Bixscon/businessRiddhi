@@ -57,7 +57,7 @@ const page = () => {
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="w-[320px] md:w-[630px] h-[350px] relative">
               <Image
-                src="/img/Homepage-1.png"
+                src="/img/Homepage-1.webp"
                 alt="Placeholder About Image"
                 fill={true}
                 objectFit="cover"
