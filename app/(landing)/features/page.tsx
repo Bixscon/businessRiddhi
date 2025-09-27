@@ -175,7 +175,7 @@ const page = () => {
       <div className="flex items-center justify-center pt-16 pb-16">
         <Button>
           <div className="flex items-center gap-2">
-            <Link href="/demo-account-type" className="flex items-center gap-4">
+            <Link href="/login" className="flex items-center gap-4">
               <span>Start now</span>
               <ArrowUpRight />
             </Link>
