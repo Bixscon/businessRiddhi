@@ -46,7 +46,7 @@ const page = () => {
             </div>
             <div className="w-[320px] md:w-[630px] h-[350px] relative">
               <Image
-                src="/img/placeholder-about.png"
+                src="/img/Homepage-1.webp"
                 alt="Placeholder About Image"
                 fill={true}
                 objectFit="contain"
@@ -57,7 +57,7 @@ const page = () => {
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="w-[320px] md:w-[630px] h-[350px] relative">
               <Image
-                src="/img/Homepage-1.webp"
+                src="/img/Ratings-2.webp"
                 alt="Placeholder About Image"
                 fill={true}
                 objectFit="contain"
@@ -92,7 +92,7 @@ const page = () => {
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="w-[320px] md:w-[630px] h-[350px] relative">
               <Image
-                src="/img/placeholder-about.png"
+                src="/img/Resource-3.webp"
                 alt="Placeholder About Image"
                 fill={true}
                 objectFit="contain"
@@ -152,7 +152,7 @@ const page = () => {
             <div className="w-[320px] md:w-[630px] h-[350px] relative">
               <Image
                 src="/img/placeholder-about.png"
-                alt="Placeholder About Image"
+                alt="Resource-4.webp"
                 fill={true}
                 objectFit="contain"
                 priority
@@ -169,29 +169,6 @@ const page = () => {
                 priority
               />
             </div>
-            <div className="flex flex-col gap-4 max-w-[400px]">
-              <div>
-                <h2 className="font-semibold">
-                  In-Depth, Data-Based Marketing Analytics
-                </h2>
-                <p className="font-medium">
-                  Track engagement, understand what resonates, and make informed
-                  adjustments. Our analytics dashboard provides clear insights
-                  into your audience’s needs and behaviors.
-                </p>
-              </div>
-              <div>
-                <h2 className="font-semibold">
-                  Drastically Reduced Promotional Costs
-                </h2>
-                <p className="font-medium">
-                  Showcase your products and services without the high costs of
-                  traditional marketing. Promote directly to a qualified,
-                  engaged audience and save on overheads.
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
