@@ -19,6 +19,7 @@ const page = () => {
           growth and success today!
         </p>
       </div>
+
       <div className="pt-16 max-w-[1200px] mx-auto">
         <h1 className="text-center text-3xl font-semibold">
           For Startup & MSMEs
@@ -54,6 +55,7 @@ const page = () => {
               />
             </div>
           </div>
+
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="w-[320px] md:w-[630px] h-[350px] relative">
               <Image
@@ -86,8 +88,11 @@ const page = () => {
           </div>
         </div>
       </div>
+
       <div className="pt-16 max-w-[1200px] mx-auto">
-        <h1 className="text-center text-3xl font-semibold">For Resource Providers</h1>
+        <h1 className="text-center text-3xl font-semibold">
+          For Resource Providers
+        </h1>
         <div className="flex flex-col gap-16 pt-12 px-8">
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="w-[320px] md:w-[630px] h-[350px] relative">
@@ -120,6 +125,7 @@ const page = () => {
               </div>
             </div>
           </div>
+
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="flex flex-col gap-4 max-w-[400px]">
               <div>
@@ -159,7 +165,9 @@ const page = () => {
               />
             </div>
           </div>
-         
+        </div> {/* ✅ this was missing */}
+      </div>
+
       <div className="flex items-center justify-center pt-16 pb-16">
         <Button>
           <div className="flex items-center gap-2">
