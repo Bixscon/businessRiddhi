@@ -49,7 +49,7 @@ const page = () => {
                 src="/img/placeholder-about.png"
                 alt="Placeholder About Image"
                 fill={true}
-                objectFit="cover"
+                objectFit="contain"
                 priority
               />
             </div>
@@ -60,7 +60,7 @@ const page = () => {
                 src="/img/Homepage-1.webp"
                 alt="Placeholder About Image"
                 fill={true}
-                objectFit="cover"
+                objectFit="contain"
                 priority
               />
             </div>
@@ -84,37 +84,6 @@ const page = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row items-center gap-16">
-            <div className="flex flex-col gap-4 max-w-[400px]">
-              <div>
-                <h2 className="font-semibold">On-Demand Mentor Guidance</h2>
-                <p className="font-medium">
-                  Connect with expert mentors for personalized insights and
-                  advice. Overcome challenges with targeted guidance from
-                  experienced professionals who understand the Indian startup
-                  ecosystem.
-                </p>
-              </div>
-              <div>
-                <h2 className="font-semibold">Mentor-Mentee Match</h2>
-                <p className="font-medium">
-                  Get paired with mentors who specialize in your industry and
-                  growth stage. Our matching feature ensures startups and MSMEs
-                  find mentors aligned with their needs, boosting your chances
-                  of success.
-                </p>
-              </div>
-            </div>
-            <div className="w-[320px] md:w-[630px] h-[350px] relative">
-              <Image
-                src="/img/placeholder-about.png"
-                alt="Placeholder About Image"
-                fill={true}
-                objectFit="cover"
-                priority
-              />
-            </div>
-          </div>
         </div>
       </div>
       <div className="pt-16 max-w-[1200px] mx-auto">
@@ -126,7 +95,7 @@ const page = () => {
                 src="/img/placeholder-about.png"
                 alt="Placeholder About Image"
                 fill={true}
-                objectFit="cover"
+                objectFit="contain"
                 priority
               />
             </div>
@@ -185,7 +154,7 @@ const page = () => {
                 src="/img/placeholder-about.png"
                 alt="Placeholder About Image"
                 fill={true}
-                objectFit="cover"
+                objectFit="contain"
                 priority
               />
             </div>
@@ -196,7 +165,7 @@ const page = () => {
                 src="/img/placeholder-about.png"
                 alt="Placeholder About Image"
                 fill={true}
-                objectFit="cover"
+                objectFit="contain"
                 priority
               />
             </div>
