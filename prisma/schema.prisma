@@ -257,3 +257,4 @@ enum Reaction {
   LIKE
   DISLIKE
 }
+npx prisma migrate deploy
