@@ -4,16 +4,22 @@ import React from "react";
 import { EmblaCarouselType } from "embla-carousel";
 
 // DotButton Component
-type DotButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
-export const DotButton: React.FC<DotButtonProps> = ({ className, ...props }) => {
-  return <button className={`w-3 h-3 rounded-full ${className || ""}`} {...props} />;
+type DotButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  selected?: boolean;
+};
+export const DotButton: React.FC<DotButtonProps> = ({ selected, className, ...props }) => {
+  return (
+    <button
+      className={`w-3 h-3 rounded-full ${selected ? "bg-primary-landing" : "bg-[#D9D9D9]"} ${
+        className || ""
+      }`}
+      {...props}
+    />
+  );
 };
 
 // Hook for Embla Carousel
-export const useDotButton = (
-  emblaApi: EmblaCarouselType | undefined,
-  onButtonClick?: (emblaApi: EmblaCarouselType) => void
-) => {
+export const useDotButton = (emblaApi?: EmblaCarouselType) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
 
@@ -21,35 +27,26 @@ export const useDotButton = (
     (index: number) => {
       if (!emblaApi) return;
       emblaApi.scrollTo(index);
-      if (onButtonClick) onButtonClick(emblaApi);
     },
-    [emblaApi, onButtonClick]
+    [emblaApi]
   );
-
-  const onInit = React.useCallback((embla: EmblaCarouselType) => {
-    setScrollSnaps(embla.scrollSnapList());
-  }, []);
-
-  const onSelect = React.useCallback((embla: EmblaCarouselType) => {
-    setSelectedIndex(embla.selectedScrollSnap());
-  }, []);
 
   React.useEffect(() => {
     if (!emblaApi) return;
 
-    onInit(emblaApi);
-    onSelect(emblaApi);
+    setScrollSnaps(emblaApi.scrollSnapList());
+    setSelectedIndex(emblaApi.selectedScrollSnap());
 
-    emblaApi.on("reInit", onInit);
-    emblaApi.on("reInit", onSelect);
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+
     emblaApi.on("select", onSelect);
+    emblaApi.on("reInit", onSelect);
 
     return () => {
-      emblaApi.off("reInit", onInit);
-      emblaApi.off("reInit", onSelect);
       emblaApi.off("select", onSelect);
+      emblaApi.off("reInit", onSelect);
     };
-  }, [emblaApi, onInit, onSelect]);
+  }, [emblaApi]);
 
   return { selectedIndex, scrollSnaps, onDotButtonClick };
 };
