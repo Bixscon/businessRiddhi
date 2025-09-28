@@ -1,22 +1,23 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import type { EmblaCarouselType } from "embla-carousel";
+import React from "react";
+import { EmblaCarouselType } from "embla-carousel";
 
-type UseDotButtonType = {
-  selectedIndex: number;
-  scrollSnaps: number[];
-  onDotButtonClick: (index: number) => void;
+// DotButton Component
+type DotButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+export const DotButton: React.FC<DotButtonProps> = ({ className, ...props }) => {
+  return <button className={`w-3 h-3 rounded-full ${className || ""}`} {...props} />;
 };
 
-export function useDotButton(
+// Hook for Embla Carousel
+export const useDotButton = (
   emblaApi: EmblaCarouselType | undefined,
   onButtonClick?: (emblaApi: EmblaCarouselType) => void
-): UseDotButtonType {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+) => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
 
-  const onDotButtonClick = useCallback(
+  const onDotButtonClick = React.useCallback(
     (index: number) => {
       if (!emblaApi) return;
       emblaApi.scrollTo(index);
@@ -25,15 +26,15 @@ export function useDotButton(
     [emblaApi, onButtonClick]
   );
 
-  const onInit = useCallback((api: EmblaCarouselType) => {
-    setScrollSnaps(api.scrollSnapList());
+  const onInit = React.useCallback((embla: EmblaCarouselType) => {
+    setScrollSnaps(embla.scrollSnapList());
   }, []);
 
-  const onSelect = useCallback((api: EmblaCarouselType) => {
-    setSelectedIndex(api.selectedScrollSnap());
+  const onSelect = React.useCallback((embla: EmblaCarouselType) => {
+    setSelectedIndex(embla.selectedScrollSnap());
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!emblaApi) return;
 
     onInit(emblaApi);
@@ -50,9 +51,5 @@ export function useDotButton(
     };
   }, [emblaApi, onInit, onSelect]);
 
-  return {
-    selectedIndex,
-    scrollSnaps,
-    onDotButtonClick,
-  };
-}
+  return { selectedIndex, scrollSnaps, onDotButtonClick };
+};
