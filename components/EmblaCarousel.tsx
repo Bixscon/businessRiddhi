@@ -3,8 +3,11 @@
 import React from "react";
 import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import TestimonialCard from "@/components/cards/TestimonialCard";
+import dynamic from "next/dynamic";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
+
+// Dynamic import for TestimonialCard to avoid SSR issues
+const TestimonialCard = dynamic(() => import("@/components/cards/TestimonialCard"), { ssr: false });
 
 interface Testimonial {
   image: string;
@@ -17,8 +20,13 @@ type EmblaCarouselProps = {
   options?: EmblaOptionsType;
 };
 
-const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options, className }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [AutoScroll({ playOnInit: true })]);
+export const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides = [], options, className }) => {
+  // Only initialize AutoScroll on client
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    options,
+    typeof window !== "undefined" ? [AutoScroll({ playOnInit: true })] : []
+  );
+
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
   return (
