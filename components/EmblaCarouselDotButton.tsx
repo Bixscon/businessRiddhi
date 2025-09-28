@@ -59,3 +59,13 @@ export const useDotButton = (
     onDotButtonClick
   }
 }
+type DotButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+
+export const DotButton: React.FC<DotButtonProps> = (props) => {
+  return (
+    <button
+      type="button"
+      {...props}
+    />
+  )
+}
