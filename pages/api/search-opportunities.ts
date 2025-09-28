@@ -2,71 +2,45 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/db';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  // Only proceed if we're in a proper request context
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   const { query } = req.query;
 
-  if (typeof query !== 'string') {
+  if (typeof query !== 'string' || !query.trim()) {
     return res.status(400).json({ error: 'Invalid query' });
   }
 
   try {
-    const opportunities = await prisma.opportunity.findMany({
-      where: {
-        OR: [
-          {
-            title: {
-              contains: query,
-              mode: 'insensitive',
-            },
-          },
-          {
-            description: {
-              contains: query,
-              mode: 'insensitive',
-            },
-          },
-          {
-            type: {
-              contains: query,
-              mode: 'insensitive',
-            },
-          },
-          {
-            subtype: {
-              contains: query,
-              mode: 'insensitive',
-            },
-          },
-          {
-            targetIndustry: {
-              contains: query,
-              mode: 'insensitive',
-            },
-          },
-          {
-            targetSector: {
-              contains: query,
-              mode: 'insensitive',
-            },
-          }
-        ],
-        isDraft: false, // Only return published opportunities
-      },
-      include: {
-        business: {
-          select: {
-            id: true,
-            name: true,
-            image: true,
-            location: true
-          }
-        }
-      }
-    });
+    const opportunities = await prisma.$queryRawUnsafe<any[]>(`
+      SELECT o.id, o.title, o.description, o.type, o.subtype, 
+             o."targetIndustry", o."targetSector", o."createdAt",
+             b.id as "businessId", b.name as "businessName", 
+             b.image as "businessImage", b.location as "businessLocation",
+             ts_rank(
+               setweight(to_tsvector('english', coalesce(o.title, '')), 'A') ||
+               setweight(to_tsvector('english', coalesce(o.description, '')), 'B') ||
+               setweight(to_tsvector('english', coalesce(o.type, '')), 'C') ||
+               setweight(to_tsvector('english', coalesce(o.subtype, '')), 'C') ||
+               setweight(to_tsvector('english', coalesce(o."targetIndustry", '')), 'D') ||
+               setweight(to_tsvector('english', coalesce(o."targetSector", '')), 'D'),
+               plainto_tsquery('english', $1)
+             ) AS rank
+      FROM "Opportunity" o
+      JOIN "Business" b ON o."businessId" = b.id
+      WHERE o."isDraft" = false
+        AND to_tsvector('english',
+          coalesce(o.title, '') || ' ' ||
+          coalesce(o.description, '') || ' ' ||
+          coalesce(o.type, '') || ' ' ||
+          coalesce(o.subtype, '') || ' ' ||
+          coalesce(o."targetIndustry", '') || ' ' ||
+          coalesce(o."targetSector", '')
+        ) @@ plainto_tsquery('english', $1)
+      ORDER BY rank DESC, o."createdAt" DESC
+      LIMIT 20;
+    `, query);
 
     return res.status(200).json(opportunities);
   } catch (error) {
