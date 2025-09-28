@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react'
+// EmblaCarouselDotButton.tsx
+import { useCallback, useEffect, useState } from 'react'
 import { EmblaCarouselType } from 'embla-carousel'
 
 type UseDotButtonType = {
@@ -18,10 +19,8 @@ export const useDotButton = (
     (index: number) => {
       if (!emblaApi) return
 
-      // Scroll immediately
       emblaApi.scrollTo(index)
 
-      // Call optional callback
       if (onButtonClick) onButtonClick(emblaApi)
     },
     [emblaApi, onButtonClick]
@@ -45,7 +44,6 @@ export const useDotButton = (
     emblaApi.on('reInit', onSelect)
     emblaApi.on('select', onSelect)
 
-    // Cleanup
     return () => {
       emblaApi.off('reInit', onInit)
       emblaApi.off('reInit', onSelect)
