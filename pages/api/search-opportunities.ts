@@ -27,8 +27,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                setweight(to_tsvector('english', coalesce(o."targetSector", '')), 'D'),
                plainto_tsquery('english', $1)
              ) AS rank
-      FROM "Opportunity" o
-      JOIN "Business" b ON o."businessId" = b.id
+      FROM opportunity o
+      JOIN business b ON o."businessId" = b.id
       WHERE o."isDraft" = false
         AND to_tsvector('english',
           coalesce(o.title, '') || ' ' ||
