@@ -1,52 +1,61 @@
-"use client";
+import React, { useCallback, useEffect, useState } from 'react'
+import { EmblaCarouselType } from 'embla-carousel'
 
-import React from "react";
-import { EmblaCarouselType } from "embla-carousel";
+type UseDotButtonType = {
+  selectedIndex: number
+  scrollSnaps: number[]
+  onDotButtonClick: (index: number) => void
+}
 
-// DotButton Component
-type DotButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  selected?: boolean;
-};
-export const DotButton: React.FC<DotButtonProps> = ({ selected, className, ...props }) => {
-  return (
-    <button
-      className={`w-3 h-3 rounded-full ${selected ? "bg-primary-landing" : "bg-[#D9D9D9]"} ${
-        className || ""
-      }`}
-      {...props}
-    />
-  );
-};
+export const useDotButton = (
+  emblaApi: EmblaCarouselType | undefined,
+  onButtonClick?: (emblaApi: EmblaCarouselType) => void
+): UseDotButtonType => {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
-// Hook for Embla Carousel
-export const useDotButton = (emblaApi?: EmblaCarouselType) => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([]);
-
-  const onDotButtonClick = React.useCallback(
+  const onDotButtonClick = useCallback(
     (index: number) => {
-      if (!emblaApi) return;
-      emblaApi.scrollTo(index);
+      if (!emblaApi) return
+
+      // Scroll immediately
+      emblaApi.scrollTo(index)
+
+      // Call optional callback
+      if (onButtonClick) onButtonClick(emblaApi)
     },
-    [emblaApi]
-  );
+    [emblaApi, onButtonClick]
+  )
 
-  React.useEffect(() => {
-    if (!emblaApi) return;
+  const onInit = useCallback((emblaApi: EmblaCarouselType) => {
+    setScrollSnaps(emblaApi.scrollSnapList())
+  }, [])
 
-    setScrollSnaps(emblaApi.scrollSnapList());
-    setSelectedIndex(emblaApi.selectedScrollSnap());
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [])
 
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+  useEffect(() => {
+    if (!emblaApi) return
 
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
+    onInit(emblaApi)
+    onSelect(emblaApi)
 
+    emblaApi.on('reInit', onInit)
+    emblaApi.on('reInit', onSelect)
+    emblaApi.on('select', onSelect)
+
+    // Cleanup
     return () => {
-      emblaApi.off("select", onSelect);
-      emblaApi.off("reInit", onSelect);
-    };
-  }, [emblaApi]);
+      emblaApi.off('reInit', onInit)
+      emblaApi.off('reInit', onSelect)
+      emblaApi.off('select', onSelect)
+    }
+  }, [emblaApi, onInit, onSelect])
 
-  return { selectedIndex, scrollSnaps, onDotButtonClick };
-};
+  return {
+    selectedIndex,
+    scrollSnaps,
+    onDotButtonClick
+  }
+}
