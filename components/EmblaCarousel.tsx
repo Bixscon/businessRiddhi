@@ -11,13 +11,13 @@ interface Testimonial {
   content: string;
 }
 
-type PropType = {
+type EmblaCarouselProps = {
   slides: Testimonial[];
   className?: string;
   options?: EmblaOptionsType;
 };
 
-const EmblaCarousel: React.FC<PropType> = ({ slides, options, className }) => {
+const EmblaCarousel: React.FC<EmblaCarouselProps> = ({ slides, options, className }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [AutoScroll({ playOnInit: true })]);
   const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(emblaApi);
 
@@ -35,8 +35,8 @@ const EmblaCarousel: React.FC<PropType> = ({ slides, options, className }) => {
           {scrollSnaps.map((_, index) => (
             <DotButton
               key={index}
+              selected={index === selectedIndex}
               onClick={() => onDotButtonClick(index)}
-              className={index === selectedIndex ? "bg-primary-landing" : "bg-[#D9D9D9]"}
             />
           ))}
         </div>
