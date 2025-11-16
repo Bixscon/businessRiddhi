@@ -7,7 +7,7 @@ const profiles = [
   {
     name: "Jhonty Dhol",
     role: "Founder",
-    image: "/img/Jhonty Dhol Headshot",
+    image: "/img/Jhonty Dhol Headshot.png",
     linkedIn: "https://www.linkedin.com/in/jhonty-dhol-8997b7227/",
   },
   {
