@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /dashboard/
+Disallow: /account/
+Disallow: /profile/
+Disallow: /business/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /login
+Disallow: /signup
+Disallow: /admin/
+Allow: /
+
+Sitemap: https://visey.co.in/sitemap.xml
