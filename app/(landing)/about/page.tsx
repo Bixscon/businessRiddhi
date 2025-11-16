@@ -13,7 +13,7 @@ const profiles = [
   {
     name: "Riddhima",
     role: "Founder",
-    image: "/img/Riddhima Headshot2.png",
+    image: "/img/Riddhima Headshot 2.webp",
     linkedIn: "https://www.linkedin.com/in/riddhima-goel-36b3a6217/",
   },
   // {
