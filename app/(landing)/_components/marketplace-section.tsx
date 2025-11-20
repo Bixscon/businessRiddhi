@@ -82,13 +82,13 @@ function MarketplaceSection() {
   }, []);
   const stats = [
     {
-      value: 91, // Static 91 days instead of dynamic calculation
+      value: daysFromStart, // Use your dynamic calculation
       subtitle: "Days",
     },
     {
-      value: 600,
+      value: 750,
       suffix: "+",
-      subtitle: "Active Users",
+      subtitle: "Startup Members",
     },
     {
       value: 850,
