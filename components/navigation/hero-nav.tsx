@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { MagnifyingGlass, List } from "@phosphor-icons/react/dist/ssr";
 import { ExitIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
@@ -21,7 +21,46 @@ export default function HeroNav({ className }: { className?: string }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [search, setSearch] = useState("");
   const [mobileSearch, setMobileSearch] = useState("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeSuggestion, setActiveSuggestion] = useState(-1);
+  const desktopInputRef = useRef<HTMLInputElement>(null);
+  const mobileInputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
+
+  // Fetch suggestions based on search input
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (search.trim().length < 2) {
+        setSuggestions([]);
+        setShowSuggestions(false);
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/search-businesses?query=${encodeURIComponent(search)}`);
+        const data = await res.json();
+        
+        // Extract unique business names and categories
+        const uniqueSuggestions = new Set<string>();
+        if (data.businesses) {
+          data.businesses.forEach((b: any) => {
+            if (b.name) uniqueSuggestions.add(b.name);
+            if (b.category) uniqueSuggestions.add(b.category);
+          });
+        }
+        
+        setSuggestions(Array.from(uniqueSuggestions).slice(0, 5));
+        setShowSuggestions(true);
+        setActiveSuggestion(-1);
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+      }
+    };
+
+    const debounceTimer = setTimeout(fetchSuggestions, 300);
+    return () => clearTimeout(debounceTimer);
+  }, [search]);
 
   const handleSearchSubmit = (searchQuery: string) => {
     if (searchQuery.trim()) {
@@ -29,12 +68,35 @@ export default function HeroNav({ className }: { className?: string }) {
       setSearch("");
       setMobileSearch("");
       setIsExpanded(false);
+      setSuggestions([]);
+      setShowSuggestions(false);
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>, searchQuery: string) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>, searchQuery: string, isMobile: boolean = false) => {
     if (e.key === "Enter") {
       handleSearchSubmit(searchQuery);
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveSuggestion(prev => 
+        prev < suggestions.length - 1 ? prev + 1 : prev
+      );
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveSuggestion(prev => prev > 0 ? prev - 1 : -1);
+    }
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    handleSearchSubmit(suggestion);
+  };
+
+  const handleSearchIconClick = () => {
+    if (!isExpanded) {
+      setIsExpanded(true);
+      setTimeout(() => desktopInputRef.current?.focus(), 0);
+    } else {
+      handleSearchSubmit(search);
     }
   };
 
@@ -60,29 +122,43 @@ export default function HeroNav({ className }: { className?: string }) {
               )}
             >
               <Input
+                ref={desktopInputRef}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                onKeyPress={(e) => handleKeyPress(e, search)}
+                onKeyDown={(e) => handleKeyPress(e, search)}
+                onFocus={() => setShowSuggestions(search.trim().length >= 2)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                 placeholder="Search"
                 className="bg-white pr-12 w-full transition-all duration-300"
                 style={{
                   transform: isExpanded ? "translateX(0)" : "translateX(20px)",
                 }}
               />
+              {showSuggestions && suggestions.length > 0 && (
+                <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                  {suggestions.map((suggestion, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleSuggestionClick(suggestion)}
+                      className={cn(
+                        "px-4 py-2 cursor-pointer transition-colors",
+                        index === activeSuggestion
+                          ? "bg-pink-100 text-gray-900"
+                          : "hover:bg-gray-100 text-gray-700"
+                      )}
+                    >
+                      {suggestion}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <button
               className={cn(
                 "transition-all duration-300 ease-in-out",
                 isExpanded ? "absolute right-0 top-1/2 -translate-y-1/2" : ""
               )}
-              onClick={(e) => {
-                e.preventDefault();
-                if (isExpanded) {
-                  handleSearchSubmit(search);
-                } else {
-                  setIsExpanded(!isExpanded);
-                }
-              }}
+              onClick={handleSearchIconClick}
             >
               <MagnifyingGlass
                 className={cn(
@@ -234,13 +310,33 @@ export default function HeroNav({ className }: { className?: string }) {
       </nav>
       <div className="relative z-10 mt-4 shadow-inner lg:hidden">
         <Input
+          ref={mobileInputRef}
           className="flex-1 pr-10 border-gray-100 py-6 bg-white"
           type="text"
           placeholder="Type to Search.."
           value={mobileSearch}
           onChange={(e) => setMobileSearch(e.target.value)}
-          onKeyPress={(e) => handleKeyPress(e, mobileSearch)}
+          onKeyDown={(e) => handleKeyPress(e, mobileSearch, true)}
+          onFocus={() => setShowSuggestions(mobileSearch.trim().length >= 2)}
         />
+        {showSuggestions && suggestions.length > 0 && (
+          <div className="absolute top-full mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50">
+            {suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                onClick={() => handleSuggestionClick(suggestion)}
+                className={cn(
+                  "px-4 py-2 cursor-pointer transition-colors text-sm",
+                  index === activeSuggestion
+                    ? "bg-pink-100 text-gray-900"
+                    : "hover:bg-gray-100 text-gray-700"
+                )}
+              >
+                {suggestion}
+              </div>
+            ))}
+          </div>
+        )}
         <button
           className="absolute inset-y-0 right-3 flex items-center cursor-pointer hover:scale-110 transition-transform"
           onClick={() => handleSearchSubmit(mobileSearch)}
