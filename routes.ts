@@ -1,5 +1,6 @@
 export const publicRoutes = [
   "/",
+  "/search",
   "/demo-account-type",
   "/features",
   "/about",
