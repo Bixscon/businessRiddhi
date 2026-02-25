@@ -45,35 +45,31 @@ export default function HeroNav({ className }: { className?: string }) {
                 Join as Startup
               </Button>
             </a>
-              {/* The following input was likely intended to be an <Input /> or similar, not a stray self-closing tag. If you want a search input, use the correct component. Example: */}
-              <Input
-                className="bg-white pr-12 w-full transition-all duration-300 "
-                style={{
-                  transform: isExpanded ? "translateX(0)" : "translateX(20px)",
-                }}
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder="Search..."
-              />
-            </div>
+          </Link>
+        </div>
 
-            <button
-              className={cn(
-                "transition-all duration-300 ease-in-out",
-                isExpanded ? "absolute right-0 top-1/2 -translate-y-1/2" : ""
-              )}
-            >
-              <MagnifyingGlass
-                onClick={() => setIsExpanded(!isExpanded)}
-                className={cn(
-                  "shrink-0 size-5 cursor-pointer transition-all duration-300",
-                  isExpanded
-                    ? "mr-4 text-neutrals-600"
-                    : "mr-4 text-black hover:scale-110"
-                )}
-              />
-            </button>
-          </div>
+        <div className="flex items-center relative">
+          <Input
+            className="bg-white pr-12 w-full transition-all duration-300"
+            style={{
+              transform: isExpanded ? "translateX(0)" : "translateX(20px)",
+            }}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search..."
+          />
+          <button
+            className={cn(
+              "transition-all duration-300 ease-in-out absolute right-2",
+              isExpanded ? "text-neutrals-600" : "text-black hover:scale-110"
+            )}
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            <MagnifyingGlass
+              className="shrink-0 size-5 cursor-pointer"
+            />
+          </button>
+        </div>
 
           <div className="hidden lg:flex items-center gap-x-4 xl:gap-x-8">
             {" "}
@@ -127,7 +123,7 @@ export default function HeroNav({ className }: { className?: string }) {
               </Link>
             ))}
           </div>
-        </div>
+
         <div className="flex items-center gap-4 lg:hidden">
           <Link href="/login">
             <Button

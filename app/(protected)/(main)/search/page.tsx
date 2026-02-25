@@ -26,18 +26,18 @@ const SearchPage = () => {
   const [activeTab, setActiveTab] = useState("businesses");
   const [isLoadingBusinesses, setIsLoadingBusinesses] = useState(false);
   const [isLoadingOpportunities, setIsLoadingOpportunities] = useState(false);
-    if (!query) return;
+
   // Fetch businesses when query changes or on initial load
   useEffect(() => {
-    if (!query || !session?.user?.id) return;
+    if (!query) return;
     
     const fetchBusinesses = async () => {
       setIsLoadingBusinesses(true);
-        setBusinesses(data.businesses || []);
-        setSimilarBusinesses(data.similar || false);
+      try {
         const res = await fetch(`/api/search-businesses?query=${query}`);
         const data = await res.json();
-        setBusinesses(data);
+        setBusinesses(data.businesses || []);
+        setSimilarBusinesses(data.similar || false);
       } catch (error) {
         console.error("Error fetching businesses:", error);
       } finally {
@@ -46,8 +46,8 @@ const SearchPage = () => {
     };
     
     fetchBusinesses();
-  }, [query, session?.user?.id]);
-    if (!query || activeTab !== "funding") return;
+  }, [query]);
+
   // Fetch opportunities when switching to funding tab or query changes
   useEffect(() => {
     if (!query || activeTab !== "funding") return;
@@ -108,9 +108,18 @@ const SearchPage = () => {
                   ></div>
                 ))
             ) : businesses.length > 0 ? (
-              businesses.map((business) => (
-                <BusinessCard key={business.id} business={business} />
-              ))
+              <>
+                {similarBusinesses && (
+                  <p className="col-span-full text-center py-4 text-yellow-700 font-semibold">
+                    I found these similar to your query:
+                  </p>
+                )}
+                <div className="contents">
+                  {businesses.map((business) => (
+                    <BusinessCard key={business.id} business={business} />
+                  ))}
+                </div>
+              </>
             ) : (
               <p className="col-span-full text-center py-8">
                 No matching businesses found for &#34;{query}&#34;
