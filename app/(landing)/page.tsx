@@ -38,7 +38,12 @@ export default function LandingPage() {
             variant="landing"
             className="w-full sm:w-96 text-base-black gap-x-4 py-4"
           >
-            <Link href="/login" className="flex items-center gap-4">
+            <Link 
+  href="https://luma.com/z6mf925b" 
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-center gap-4"
+>
               <span className="text-lg">Generate leads now</span>
               <ArrowUpRight size={24} />
             </Link>
