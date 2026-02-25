@@ -4,6 +4,8 @@ import { MapPin } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import StarRatingConstant from "@/components/StarRatingConstant";
 import { useRouter } from "next/navigation";
+import { useState, useCallback } from "react";
+import { useSession, signIn } from "next-auth/react";
 
 interface Business {
   id: string;
@@ -17,11 +19,41 @@ interface Business {
 
 export function BusinessCard({ business }: { business: Business }) {
   const router = useRouter();
+  const { data: session } = useSession();
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const VIEW_KEY = "anon_business_views";
+  const VIEW_THRESHOLD = 6; // after this many opens, require login
+
+  const handleCardClick = useCallback(() => {
+    if (session && session.user) {
+      router.push(`/business/${business.id}`);
+      return;
+    }
+
+    // Count anonymous views in localStorage
+    try {
+      const raw = localStorage.getItem(VIEW_KEY) || "0";
+      const next = Math.min(Number(raw || 0) + 1, VIEW_THRESHOLD);
+      localStorage.setItem(VIEW_KEY, String(next));
+
+      if (next >= VIEW_THRESHOLD) {
+        // show modal and prevent navigation
+        setShowLoginModal(true);
+        return;
+      }
+    } catch (e) {
+      // ignore storage errors and let the user view
+    }
+
+    router.push(`/business/${business.id}`);
+  }, [business.id, router, session]);
 
   return (
+    <>
     <article 
       className="border rounded-md h-[310px] cursor-pointer hover:border-primary-100 transition-all"
-      onClick={() => router.push(`/business/${business.id}`)}
+      onClick={handleCardClick}
     >      <div className="relative h-28 m-1 bg-gray-400 rounded-md">
         {/* Promotion feature temporarily disabled
         <p className="absolute text-sm px-2 py-0.5 bg-secondary-200 rounded-full right-3 top-3">
@@ -73,5 +105,23 @@ export function BusinessCard({ business }: { business: Business }) {
         </div>
       </div>
     </article>
+    {showLoginModal && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div className="absolute inset-0 bg-black/50" onClick={() => {}} />
+        <div className="relative bg-white rounded-lg p-6 w-full max-w-md shadow-lg">
+          <h3 className="text-lg font-semibold mb-3">Please sign in to continue</h3>
+          <p className="text-sm text-gray-600 mb-5">You have reached the maximum number of free profile views. Create an account or sign in to keep browsing full profiles.</p>
+          <div className="flex gap-3 justify-end">
+            <button
+              className="px-4 py-2 bg-primary-600 text-white rounded"
+              onClick={() => signIn()}
+            >
+              Sign in / Sign up
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }

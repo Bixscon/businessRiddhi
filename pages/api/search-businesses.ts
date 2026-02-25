@@ -9,6 +9,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Invalid query' });
   }
 
+  // Development fallback: if DATABASE_URL not configured, return mock data
+  if (!process.env.DATABASE_URL) {
+    const mock = [
+      { id: 'mock-1', name: 'Mock Business One', image: '/img/mock1.png', location: 'Mumbai', averageRating: 4.5, services: [{name: 'Advisory'}] },
+      { id: 'mock-2', name: 'Mock Business Two', image: '/img/mock2.png', location: 'Bengaluru', averageRating: 4.0, services: [{name: 'Legal'}] },
+    ];
+    return res.status(200).json({ businesses: mock, similar: false });
+  }
+
   try {
     // Search across multiple fields
     let businesses = await prisma.business.findMany({
