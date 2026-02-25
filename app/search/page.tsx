@@ -4,7 +4,6 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { BusinessCard } from "@/components/cards/business-card";
 import dynamic from 'next/dynamic';
 
@@ -18,7 +17,6 @@ const SearchPage = () => {
   const searchParams = useSearchParams();
   const query = searchParams?.get("query") || "";
   const { data: session } = useSession();
-  const router = useRouter();
   const [businesses, setBusinesses] = useState<any[]>([]);
   const [opportunities, setOpportunities] = useState<any[]>([]);
   const [similarOpportunities, setSimilarOpportunities] = useState(false);
