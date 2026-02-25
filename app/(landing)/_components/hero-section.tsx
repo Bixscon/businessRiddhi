@@ -71,13 +71,19 @@ const HeroSection = () => {
               </div>
               {/* Call-to-Action */}
               <Button
+                asChild
                 variant="landing"
                 className="py-3 px-10 text-lg text-base-black hover:scale-105 transition-transform font-bold"
               >
-                <Link href="/login" className="flex items-center gap-4">
-                  <span className="font-bold">Find Resources</span>
+                <a
+                  href="https://luma.com/z6mf925b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-4"
+                >
+                  <span className="font-bold">Join as Resource Provider</span>
                   <ArrowUpRight size={20} className="font-bold" />
-                </Link>
+                </a>
               </Button>
             </div>
           </div>          {/* Right Image Section */}
