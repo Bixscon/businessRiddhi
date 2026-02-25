@@ -4,7 +4,7 @@ import { MapPin } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import StarRatingConstant from "@/components/StarRatingConstant";
 import { useRouter } from "next/navigation";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useSession, signIn } from "next-auth/react";
 
 interface Business {
@@ -24,6 +24,17 @@ export function BusinessCard({ business }: { business: Business }) {
 
   const VIEW_KEY = "anon_business_views";
   const VIEW_THRESHOLD = 6; // after this many opens, require login
+
+  useEffect(() => {
+    // clear anonymous count when a user signs in
+    try {
+      if (session && session.user) {
+        localStorage.removeItem(VIEW_KEY);
+      }
+    } catch (e) {
+      // ignore storage errors
+    }
+  }, [session]);
 
   const handleCardClick = useCallback(() => {
     if (session && session.user) {
