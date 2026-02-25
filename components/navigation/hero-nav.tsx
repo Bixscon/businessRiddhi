@@ -24,50 +24,50 @@ export default function HeroNav({ className }: { className?: string }) {
     <header className="sticky top-0 bg-[#FFFDFE] px-4 py-4 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] w-full transition-all duration-300 z-40">
       <nav className={cn("flex items-center justify-between", className)}>
         <div className="shrink-0 lg:w-48 cursor-pointer transition-transform duration-300 hover:scale-105">
-          <a
-            href="https://luma.com/yzrt8u4r"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              variant="nav"
-              size="md"
-              style={{
-                color: "black",
-                borderRadius: "20px",
-                padding: "9px 20px",
-                background:
-                  "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
-                border: "2px solid transparent",
-              }}
-            >
-              Join as Startup
-            </Button>
-          </a>
-        </div>
-
-        <div className="flex items-center relative">
-          <Input
-            className="bg-white pr-12 w-full transition-all duration-300"
-            style={{
-              transform: isExpanded ? "translateX(0)" : "translateX(20px)",
-            }}
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search..."
-          />
-          <button
-            className={cn(
-              "transition-all duration-300 ease-in-out absolute right-2",
-              isExpanded ? "text-neutrals-600" : "text-black hover:scale-110"
-            )}
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            <MagnifyingGlass
-              className="shrink-0 size-5 cursor-pointer"
+          <Link href="/">
+            <Image
+              src="/logo-black.webp"
+              width={81}
+              height={42}
+              alt="visey logo"
             />
-          </button>
+          </Link>
         </div>
+        <div className="flex gap-x-4 items-center">
+          <div className="hidden lg:flex relative items-center">
+            <div
+              className={cn(
+                "overflow-hidden transition-all duration-300 ease-in-out",
+                isExpanded ? "w-64 opacity-100" : "w-0 opacity-0"
+              )}
+            >
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search"
+                className="bg-white pr-12 w-full transition-all duration-300"
+                style={{
+                  transform: isExpanded ? "translateX(0)" : "translateX(20px)",
+                }}
+              />
+            </div>
+            <button
+              className={cn(
+                "transition-all duration-300 ease-in-out",
+                isExpanded ? "absolute right-0 top-1/2 -translate-y-1/2" : ""
+              )}
+            >
+              <MagnifyingGlass
+                onClick={() => setIsExpanded(!isExpanded)}
+                className={cn(
+                  "shrink-0 size-5 cursor-pointer transition-all duration-300",
+                  isExpanded
+                    ? "mr-4 text-neutrals-600"
+                    : "mr-4 text-black hover:scale-110"
+                )}
+              />
+            </button>
+          </div>
 
           <div className="hidden lg:flex items-center gap-x-4 xl:gap-x-8">
             {" "}
@@ -86,7 +86,7 @@ export default function HeroNav({ className }: { className?: string }) {
               </Link>
             ))}{" "}
             <a
-              href="https://luma.com/yzrt8u4r?type=provider"
+              href="https://luma.com/z6mf925b"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -126,10 +126,11 @@ export default function HeroNav({ className }: { className?: string }) {
               </Button>
             </a>
           </div>
+        </div>
 
         <div className="flex items-center gap-4 lg:hidden">
           <a
-            href="https://luma.com/yzrt8u4r?type=provider"
+            href="https://luma.com/z6mf925b"
             target="_blank"
             rel="noopener noreferrer"
           >
