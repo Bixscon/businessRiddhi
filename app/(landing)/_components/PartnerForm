@@ -10,7 +10,7 @@ export default function PartnerForm() {
   const [designation, setDesignation] = useState("");
   const [organization, setOrganization] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
 
     const subject = "Partnership Inquiry - Visey";
