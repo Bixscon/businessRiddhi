@@ -21,6 +21,7 @@ const SearchPage = () => {
   const router = useRouter();
   const [businesses, setBusinesses] = useState<any[]>([]);
   const [opportunities, setOpportunities] = useState<any[]>([]);
+  const [similarOpportunities, setSimilarOpportunities] = useState(false);
   const [similarBusinesses, setSimilarBusinesses] = useState(false);
   const [activeTab, setActiveTab] = useState("businesses");
   const [isLoadingBusinesses, setIsLoadingBusinesses] = useState(false);
@@ -49,23 +50,22 @@ const SearchPage = () => {
     if (!query || activeTab !== "funding") return;
   // Fetch opportunities when switching to funding tab or query changes
   useEffect(() => {
-    if (!query || !session?.user?.id || activeTab !== "funding") return;
-    
+    if (!query || activeTab !== "funding") return;
     const fetchOpportunities = async () => {
       setIsLoadingOpportunities(true);
       try {
         const res = await fetch(`/api/search-opportunities?query=${query}`);
         const data = await res.json();
-        setOpportunities(data);
+        setOpportunities(data.opportunities || []);
+        setSimilarOpportunities(data.similar || false);
       } catch (error) {
         console.error("Error fetching opportunities:", error);
       } finally {
         setIsLoadingOpportunities(false);
       }
     };
-    
     fetchOpportunities();
-  }, [query, activeTab, session?.user?.id]);
+  }, [query, activeTab]);
   
   // Handle tab switching
   const handleTabChange = (tab: string) => {
@@ -132,15 +132,22 @@ const SearchPage = () => {
                   ></div>
                 ))
             ) : opportunities.length > 0 ? (
-              opportunities.map((opportunity) => (
-                <DynamicFundingCard 
-                  key={opportunity.id} 
-                  fundingOpportunity={opportunity} 
-                  business={opportunity.business || null}
-                  isSaved={false}
-                  userId={session?.user?.id || ''}
-                />
-              ))
+              <>
+                {similarOpportunities && (
+                  <p className="text-center py-4 text-yellow-700 font-semibold">
+                    I found these similar to your query:
+                  </p>
+                )}
+                {opportunities.map((opportunity) => (
+                  <DynamicFundingCard 
+                    key={opportunity.id} 
+                    fundingOpportunity={opportunity} 
+                    business={opportunity.business || null}
+                    isSaved={false}
+                    userId={session?.user?.id || ''}
+                  />
+                ))}
+              </>
             ) : (
               <p className="text-center py-8">
                 No matching funding opportunities found for &#34;{query}&#34;

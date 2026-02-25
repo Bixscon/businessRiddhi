@@ -45,10 +45,15 @@ export default function HeroNav({ className }: { className?: string }) {
                 Join as Startup
               </Button>
             </a>
+              {/* The following input was likely intended to be an <Input /> or similar, not a stray self-closing tag. If you want a search input, use the correct component. Example: */}
+              <Input
                 className="bg-white pr-12 w-full transition-all duration-300 "
                 style={{
                   transform: isExpanded ? "translateX(0)" : "translateX(20px)",
                 }}
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Search..."
               />
             </div>
 
