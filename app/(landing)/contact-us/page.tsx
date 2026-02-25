@@ -1,4 +1,4 @@
-import { Envelope, PhoneCall, WhatsappLogo } from '@phosphor-icons/react/dist/ssr';
+import { Envelope, Lifebuoy, WhatsappLogo } from '@phosphor-icons/react/dist/ssr';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
@@ -29,7 +29,7 @@ const page = () => {
             <div className="flex flex-col h-full justify-between">
               <div className="space-y-4">
                 <div className="p-2 rounded-full inline-flex justify-center items-center bg-success-landing">
-                  <PhoneCall size={36} className="text-[#709B08]" />
+                  <WhatsappLogo size={36} className="text-[#709B08]" />
                 </div>
                 <div className="space-y-4">
                   <h3 className="font-medium text-3xl leading-tight">
@@ -97,7 +97,7 @@ const page = () => {
             <div className="flex flex-col h-full justify-between">
               <div className="space-y-4">
                 <div className="p-2 rounded-full inline-flex justify-center items-center bg-success-landing">
-                  <WhatsappLogo size={36} className="text-[#709B08]" />
+                  <Lifebuoy size={36} className="text-[#709B08]" />
                 </div>
                 <div className="space-y-4">
                   <h3 className="font-gothic font-medium text-3xl leading-tight">
@@ -132,7 +132,7 @@ const page = () => {
         </div>
       </div>
 
-      {/* Contact Form Section */}
+      {/* Contact Form Section
       <div className="pt-16">
         <h2 className="font-semibold text-2xl text-center">
           We are looking forward to assisting you!
@@ -169,6 +169,7 @@ const page = () => {
           </Button>
         </form>
       </div>
+      */}
     </div>
   );
 };
