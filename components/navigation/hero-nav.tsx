@@ -24,28 +24,26 @@ export default function HeroNav({ className }: { className?: string }) {
     <header className="sticky top-0 bg-[#FFFDFE] px-4 py-4 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] w-full transition-all duration-300 z-40">
       <nav className={cn("flex items-center justify-between", className)}>
         <div className="shrink-0 lg:w-48 cursor-pointer transition-transform duration-300 hover:scale-105">
-          <Link href="/">
-            <a
-              href="https://luma.com/yzrt8u4r"
-              target="_blank"
-              rel="noopener noreferrer"
+          <a
+            href="https://luma.com/yzrt8u4r"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button
+              variant="nav"
+              size="md"
+              style={{
+                color: "black",
+                borderRadius: "20px",
+                padding: "9px 20px",
+                background:
+                  "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
+                border: "2px solid transparent",
+              }}
             >
-              <Button
-                variant="nav"
-                size="md"
-                style={{
-                  color: "black",
-                  borderRadius: "20px",
-                  padding: "9px 20px",
-                  background:
-                    "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
-                  border: "2px solid transparent",
-                }}
-              >
-                Join as Startup
-              </Button>
-            </a>
-          </Link>
+              Join as Startup
+            </Button>
+          </a>
         </div>
 
         <div className="flex items-center relative">
@@ -87,8 +85,11 @@ export default function HeroNav({ className }: { className?: string }) {
                 {item.name}
               </Link>
             ))}{" "}
-            <Link href="/login">
-              {" "}
+            <a
+              href="https://luma.com/yzrt8u4r?type=provider"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button
                 variant="nav"
                 size="md"
@@ -103,29 +104,35 @@ export default function HeroNav({ className }: { className?: string }) {
               >
                 Join as Resource Provider
               </Button>
-            </Link>
-            {["Join as Startup"].map((text) => (
-              <Link key={text} href="/login">
-                <Button
-                  variant="nav"
-                  size="md"
-                  style={{
-                    color: "black",
-                    borderRadius: "20px",
-                    padding: "9px 20px",
-                    background:
-                      "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
-                    border: "2px solid transparent",
-                  }}
-                >
-                  {text}
-                </Button>
-              </Link>
-            ))}
+            </a>
+            <a
+              href="https://luma.com/yzrt8u4r"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant="nav"
+                size="md"
+                style={{
+                  color: "black",
+                  borderRadius: "20px",
+                  padding: "9px 20px",
+                  background:
+                    "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
+                  border: "2px solid transparent",
+                }}
+              >
+                Join as Startup
+              </Button>
+            </a>
           </div>
 
         <div className="flex items-center gap-4 lg:hidden">
-          <Link href="/login">
+          <a
+            href="https://luma.com/yzrt8u4r?type=provider"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button
               style={{
                 color: "black",
@@ -138,9 +145,9 @@ export default function HeroNav({ className }: { className?: string }) {
               variant="nav"
               size="md"
             >
-              Get Started
+              Join as Resource Provider
             </Button>
-          </Link>
+          </a>
           <div className="">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
