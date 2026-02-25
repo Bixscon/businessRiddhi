@@ -173,7 +173,7 @@ const page = () => {
             entrepreneurial spirit. Together, we are building a brighter, more
             inclusive future for startups, one bold step at a time.
           </p>
-          <div className="pt-20 flex flex-wrap justify-around gap-12">
+          <div className="pt-20 flex flex-wrap justify-center gap-8">
             {profiles.map((profile, idx) => {
               return (
                 <div key={idx}>
