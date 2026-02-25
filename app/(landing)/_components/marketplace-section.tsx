@@ -34,7 +34,7 @@ const cardData = [
 
 const features = [
   {
-    title: "Find Free",
+    title: "Discover for you",
     subtitle: "Resources in 3-clicks",
   },
   {
@@ -86,14 +86,14 @@ function MarketplaceSection() {
       subtitle: "Days",
     },
     {
-      value: 750,
+      value: 1800,
       suffix: "+",
-      subtitle: "Startup Members",
+      subtitle: "Startups",
     },
     {
-      value: 850,
+      value: 312,
       suffix: "+",
-      subtitle: "Resources Providers Listed",
+      subtitle: "Resources Partners",
     },
   ];
 
