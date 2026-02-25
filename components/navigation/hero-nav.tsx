@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { MagnifyingGlass, List } from "@phosphor-icons/react/dist/ssr";
 import { ExitIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
@@ -19,6 +20,23 @@ import {
 export default function HeroNav({ className }: { className?: string }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [search, setSearch] = useState("");
+  const [mobileSearch, setMobileSearch] = useState("");
+  const router = useRouter();
+
+  const handleSearchSubmit = (searchQuery: string) => {
+    if (searchQuery.trim()) {
+      router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
+      setSearch("");
+      setMobileSearch("");
+      setIsExpanded(false);
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>, searchQuery: string) => {
+    if (e.key === "Enter") {
+      handleSearchSubmit(searchQuery);
+    }
+  };
 
   return (
     <header className="sticky top-0 bg-[#FFFDFE] px-4 py-4 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] w-full transition-all duration-300 z-40">
@@ -44,6 +62,7 @@ export default function HeroNav({ className }: { className?: string }) {
               <Input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                onKeyPress={(e) => handleKeyPress(e, search)}
                 placeholder="Search"
                 className="bg-white pr-12 w-full transition-all duration-300"
                 style={{
@@ -56,9 +75,16 @@ export default function HeroNav({ className }: { className?: string }) {
                 "transition-all duration-300 ease-in-out",
                 isExpanded ? "absolute right-0 top-1/2 -translate-y-1/2" : ""
               )}
+              onClick={(e) => {
+                e.preventDefault();
+                if (isExpanded) {
+                  handleSearchSubmit(search);
+                } else {
+                  setIsExpanded(!isExpanded);
+                }
+              }}
             >
               <MagnifyingGlass
-                onClick={() => setIsExpanded(!isExpanded)}
                 className={cn(
                   "shrink-0 size-5 cursor-pointer transition-all duration-300",
                   isExpanded
@@ -211,10 +237,16 @@ export default function HeroNav({ className }: { className?: string }) {
           className="flex-1 pr-10 border-gray-100 py-6 bg-white"
           type="text"
           placeholder="Type to Search.."
+          value={mobileSearch}
+          onChange={(e) => setMobileSearch(e.target.value)}
+          onKeyPress={(e) => handleKeyPress(e, mobileSearch)}
         />
-        <span className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+        <button
+          className="absolute inset-y-0 right-3 flex items-center cursor-pointer hover:scale-110 transition-transform"
+          onClick={() => handleSearchSubmit(mobileSearch)}
+        >
           <MagnifyingGlassIcon className="w-5 h-5 text-gray-600" />
-        </span>
+        </button>
       </div>
     </header>
   );
