@@ -34,20 +34,19 @@ export default function LandingPage() {
         />
 
         <div className="relative z-10 flex items-center justify-center h-full px-4">
-          <Button
-            variant="landing"
-            className="w-full sm:w-96 text-base-black gap-x-4 py-4"
-          >
-            <Link 
-  href="https://luma.com/z6mf925b" 
+          <a
+  href="https://luma.com/z6mf925b"
   target="_blank"
   rel="noopener noreferrer"
-  className="flex items-center gap-4"
 >
-              <span className="text-lg">Generate leads now</span>
-              <ArrowUpRight size={24} />
-            </Link>
-          </Button>
+  <Button
+    variant="landing"
+    className="w-full sm:w-96 text-base-black gap-x-4 py-4"
+  >
+    <span className="text-lg">Generate leads now</span>
+    <ArrowUpRight size={24} />
+  </Button>
+</a>
         </div>
       </div>
       
