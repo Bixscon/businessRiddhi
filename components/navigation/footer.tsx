@@ -24,8 +24,8 @@ const footerData = [
       { name: "Team", link: "/about#team" },
       { name: "Blog", link: "/blogs" },
       {
-        name: "Free Business Listing",
-        link: "https://docs.google.com/forms/d/e/1FAIpQLSdzEFmkrANFYzdrmSZrjVgeOm_TJspc6q2yi-SgpuRuh_lrAQ/viewform",
+        name: "Resource Partner Onboarding",
+        link: "https://luma.com/z6mf925b",
       },
     ],
   },
@@ -52,7 +52,7 @@ function Footer({ className }: { className?: string }) {
           className="mx-auto"
         />
         <p>
-          All rights Reserved Bixscon Technologies Pvt. Ltd. | Designed and built with love - Copyright© 2025
+          All rights Reserved Bixscon Technologies Pvt. Ltd. | Designed and built with love - Copyright© 2026
         </p>
 
         <Separator className="bg-primary mt-6" />
