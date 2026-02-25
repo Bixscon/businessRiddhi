@@ -1,4 +1,4 @@
-"use client";
+import PartnerForm from "@/components/PartnerForm";
 import { ChartLineUp, UsersThree, Eye } from '@phosphor-icons/react/dist/ssr';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
@@ -117,77 +117,7 @@ const [organization, setOrganization] = useState("");
         Together, we can drive forward the future of innovation in India. Reach out to us at <span className="font-semibold">contact@visey.co.in</span> or call us at<span className="font-semibold">+91 78275 86754</span> to explore how we can create meaningful change together.
         </p>
       </div>
-      <div className="pt-16">
-  <h2 className="font-semibold text-2xl text-center">
-    Our Team Will Connect With You Soon!
-  </h2>
-
-  <form
-    onSubmit={(e) => {
-      e.preventDefault();
-
-      const subject = "Partnership Inquiry - Visey";
-
-      const body = `Hi Team Visey,
-
-I would like to partner with Visey.
-
-Here are my details:
-
-Name: ${name}
-Designation: ${designation}
-Organization: ${organization}
-
-Looking forward to connecting.
-
-Best regards,
-${name}`;
-
-      window.location.href = `mailto:contact@visey.co.in?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-    }}
-    className="bg-primary-landing rounded-2xl mx-auto p-8 mt-9 mb-1 md:w-8/12 xl:w-6/12 md:rounded-full md:flex md:items-center md:gap-x-6"
-  >
-    <div className="md:flex-1 space-y-2">
-      <Input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className="border-0 shadow-none h-12 text-base-white placeholder:text-base-white"
-        placeholder="Your Name"
-        required
-      />
-
-      <Separator />
-
-      <Input
-        value={designation}
-        onChange={(e) => setDesignation(e.target.value)}
-        className="border-0 shadow-none h-12 text-base-white placeholder:text-base-white"
-        placeholder="Your Designation"
-        required
-      />
-
-      <Separator />
-
-      <Input
-        value={organization}
-        onChange={(e) => setOrganization(e.target.value)}
-        className="border-0 shadow-none h-12 text-base-white placeholder:text-base-white"
-        placeholder="Organization Name"
-        required
-      />
-    </div>
-
-    <Button
-      type="submit"
-      variant="landing"
-      className="w-11/12 py-3 px-4 rounded-full shadow-2xl mt-6 md:mt-0 md:shrink-0 md:w-auto md:p-6 md:aspect-square cursor-pointer"
-    >
-      Get In Touch
-    </Button>
-  </form>
-</div>
+<PartnerForm />
     </div>
   )
 };
