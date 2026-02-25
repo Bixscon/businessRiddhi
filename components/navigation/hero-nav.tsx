@@ -38,23 +38,14 @@ export default function HeroNav({ className }: { className?: string }) {
       }
 
       try {
-        const res = await fetch(`/api/search-businesses?query=${encodeURIComponent(search)}`);
+        const res = await fetch(`/api/suggestions?query=${encodeURIComponent(search)}`);
         const data = await res.json();
-        
-        // Extract unique business names and categories
-        const uniqueSuggestions = new Set<string>();
-        if (data.businesses) {
-          data.businesses.forEach((b: any) => {
-            if (b.name) uniqueSuggestions.add(b.name);
-            if (b.category) uniqueSuggestions.add(b.category);
-          });
-        }
-        
-        setSuggestions(Array.from(uniqueSuggestions).slice(0, 5));
-        setShowSuggestions(true);
+
+        setSuggestions(Array.isArray(data.suggestions) ? data.suggestions.slice(0, 7) : []);
+        setShowSuggestions((data.suggestions || []).length > 0);
         setActiveSuggestion(-1);
       } catch (error) {
-        console.error("Error fetching suggestions:", error);
+        console.error('Error fetching suggestions:', error);
       }
     };
 
@@ -132,6 +123,9 @@ export default function HeroNav({ className }: { className?: string }) {
                 onKeyDown={(e) => handleKeyPress(e, search)}
                 onFocus={() => setShowSuggestions(search.trim().length >= 2)}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                aria-autocomplete="list"
+                aria-controls="search-suggestions"
+                aria-activedescendant={activeSuggestion >= 0 ? `suggestion-${activeSuggestion}` : undefined}
                 placeholder="Search"
                 className="bg-white pr-12 w-full transition-all duration-300"
                 style={{
@@ -139,10 +133,14 @@ export default function HeroNav({ className }: { className?: string }) {
                 }}
               />
               {showSuggestions && suggestions.length > 0 && (
-                <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                <div id="search-suggestions" role="listbox" aria-label="Search suggestions" className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50">
                   {suggestions.map((suggestion, index) => (
                     <div
+                      id={`suggestion-${index}`}
+                      role="option"
+                      aria-selected={index === activeSuggestion}
                       key={index}
+                      onMouseDown={(e) => { e.preventDefault(); }}
                       onClick={() => handleSuggestionClick(suggestion)}
                       className={cn(
                         "px-4 py-2 cursor-pointer transition-colors",
@@ -322,6 +320,8 @@ export default function HeroNav({ className }: { className?: string }) {
           onChange={(e) => setMobileSearch(e.target.value)}
           onKeyDown={(e) => handleKeyPress(e, mobileSearch, true)}
           onFocus={() => setShowSuggestions(mobileSearch.trim().length >= 2)}
+          aria-autocomplete="list"
+          aria-controls="search-suggestions"
         />
         {showSuggestions && suggestions.length > 0 && (
           <div className="absolute top-full mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg z-50">
