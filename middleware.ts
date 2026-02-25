@@ -15,10 +15,15 @@ export default auth(async (req) => {
   const isLoggedIn = !!req.auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  const isApiRoute = nextUrl.pathname.startsWith('/api');
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  if (isApiAuthRoute) {
+  // Allow all API routes (except auth callback handling) to proceed without
+  // forcing a redirect to the login page. This ensures public API endpoints
+  // like `/api/search-businesses` and `/api/search-opportunities` can access
+  // the database even for unauthenticated users.
+  if (isApiRoute || isApiAuthRoute) {
     return;
   }
 
