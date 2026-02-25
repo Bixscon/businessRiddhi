@@ -6,15 +6,11 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import React from 'react';
 import { Metadata } from 'next';
-import { useState } from "react";
 export const metadata:Metadata={
   title:"Partner with Visey | Empowering India's Startup Ecosystem",
   description:"Partner with Visey to support India’s innovative startups. Join our network of investors, mentors, and resource providers to create lasting impact and growth."
 }
 const page = () => {
-  const [name, setName] = useState("");
-const [designation, setDesignation] = useState("");
-const [organization, setOrganization] = useState("");
   return (
     <div className="m-8 mb-24 p-8 border-2 rounded-xl">
       <div>
