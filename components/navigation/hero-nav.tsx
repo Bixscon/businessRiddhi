@@ -25,26 +25,26 @@ export default function HeroNav({ className }: { className?: string }) {
       <nav className={cn("flex items-center justify-between", className)}>
         <div className="shrink-0 lg:w-48 cursor-pointer transition-transform duration-300 hover:scale-105">
           <Link href="/">
-            <Image
-              src="/logo-black.webp"
-              width={81}
-              height={42}
-              alt="visey logo"
-            />
-          </Link>
-        </div>
-        <div className="flex gap-x-4 items-center">
-          <div className="hidden lg:flex relative items-center">
-            <div
-              className={cn(
-                "overflow-hidden transition-all  duration-300 ease-in-out",
-                isExpanded ? "w-64 opacity-100" : "w-0 opacity-0"
-              )}
+            <a
+              href="https://luma.com/yzrt8u4r"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Input
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search"
+              <Button
+                variant="nav"
+                size="md"
+                style={{
+                  color: "black",
+                  borderRadius: "20px",
+                  padding: "9px 20px",
+                  background:
+                    "linear-gradient(#B8F272, #B8F272) padding-box, linear-gradient(90deg, #FF64A3, #CF0E5E) border-box",
+                  border: "2px solid transparent",
+                }}
+              >
+                Join as Startup
+              </Button>
+            </a>
                 className="bg-white pr-12 w-full transition-all duration-300 "
                 style={{
                   transform: isExpanded ? "translateX(0)" : "translateX(20px)",
