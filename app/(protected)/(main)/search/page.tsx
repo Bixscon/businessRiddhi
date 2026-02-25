@@ -21,17 +21,19 @@ const SearchPage = () => {
   const router = useRouter();
   const [businesses, setBusinesses] = useState<any[]>([]);
   const [opportunities, setOpportunities] = useState<any[]>([]);
+  const [similarBusinesses, setSimilarBusinesses] = useState(false);
   const [activeTab, setActiveTab] = useState("businesses");
   const [isLoadingBusinesses, setIsLoadingBusinesses] = useState(false);
   const [isLoadingOpportunities, setIsLoadingOpportunities] = useState(false);
-  
+    if (!query) return;
   // Fetch businesses when query changes or on initial load
   useEffect(() => {
     if (!query || !session?.user?.id) return;
     
     const fetchBusinesses = async () => {
       setIsLoadingBusinesses(true);
-      try {
+        setBusinesses(data.businesses || []);
+        setSimilarBusinesses(data.similar || false);
         const res = await fetch(`/api/search-businesses?query=${query}`);
         const data = await res.json();
         setBusinesses(data);
@@ -44,7 +46,7 @@ const SearchPage = () => {
     
     fetchBusinesses();
   }, [query, session?.user?.id]);
-
+    if (!query || activeTab !== "funding") return;
   // Fetch opportunities when switching to funding tab or query changes
   useEffect(() => {
     if (!query || !session?.user?.id || activeTab !== "funding") return;
