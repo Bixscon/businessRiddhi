@@ -37,37 +37,14 @@ function SignUpSection() {
           </div>
 
           {/* Signup Form */}
-          <form
-            action="#"
-            className="bg-primary-landing  bg-gradient-to-tr from-[#9d0543] to-[#c80755] rounded-2xl mx-auto p-8 mt-9 mb-1 md:w-8/12 xl:w-6/12 md:rounded-full md:flex md:items-center md:gap-x-6"
-            aria-labelledby="signup-form-title"
-          >
-            <div className="md:flex-1">
-              <Input
-                type="text"
-                aria-label="Your name"
-                className="border-0 shadow-none h-12 text-base-white placeholder:text-base-white mb-4 md:mb-0"
-                placeholder="Your name"
-              />
-              <Separator />
-              <Input
-                type="email"
-                aria-label="Your email"
-                className="border-0 shadow-none h-12 text-base-white placeholder:text-base-white"
-                placeholder="Your email"
-              />
-            </div>
-            <Link href="/login">
-              <Button
-                variant="landing"
-                aria-label="Sign up for updates"
-                className="w-11/12 py-3 px-4 rounded-full shadow-2xl mt-6 md:mt-0 md:shrink-0 md:w-auto md:p-6 md:aspect-square cursor-pointer"
-              >
-                Sign up
-              </Button>
-            </Link>
-          </form>
-
+     <a
+  href="https://chat.whatsapp.com/FaMyrpcXefrJSZXtP8YQdQ"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#9d0543] to-[#c80755] text-white font-semibold hover:shadow-lg transition-all duration-300"
+>
+  Join the WhatsApp Community
+</a>
           {/* Terms Agreement */}
           <p className="text-sm">
             By subscribing, you agree with our{" "}
