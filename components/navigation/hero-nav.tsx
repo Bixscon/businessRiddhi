@@ -75,7 +75,11 @@ export default function HeroNav({ className }: { className?: string }) {
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>, searchQuery: string, isMobile: boolean = false) => {
     if (e.key === "Enter") {
-      handleSearchSubmit(searchQuery);
+      if (activeSuggestion >= 0 && suggestions[activeSuggestion]) {
+        handleSearchSubmit(suggestions[activeSuggestion]);
+      } else {
+        handleSearchSubmit(searchQuery);
+      }
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
       setActiveSuggestion(prev => 
